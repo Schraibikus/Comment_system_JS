@@ -8,7 +8,10 @@ class Archive extends User {
     this.userNextComment.classList.add("comments__archive");
     this.userNextComment.setAttribute("data-index", idx);
     this.userNextComment.setAttribute("isFavorite", false);
-    this.userNextComment.setAttribute("data-rating", 0);
+    this.userNextComment.setAttribute(
+      "data-rating",
+      `${this.rating.displayRatingArchive(this.userNextComment.dataset.index)}`
+    );
     this.userNextComment.innerHTML = `
     <img src="${this.config.users[idx].src}" alt="user" width="61" height="61"/>
     <p class="comments__answer-title">${this.config.users[idx].first} ${

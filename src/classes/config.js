@@ -11,6 +11,11 @@ class Config {
 
   answerRatings = JSON.parse(localStorage.getItem("answerRatings")) || [];
 
+  itemsSortByDate = JSON.parse(localStorage.getItem("itemsSortByDate")) || [];
+
+  itemsSortByRating =
+    JSON.parse(localStorage.getItem("itemsSortByRating")) || [];
+
   usersIdx = 0;
 
   maxUsers = 20;

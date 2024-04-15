@@ -8,7 +8,10 @@ class Answer extends User {
     this.userNextAnswer.classList.add("comments__answer");
     this.userNextAnswer.setAttribute("data-index", idx);
     this.userNextAnswer.setAttribute("isFavorite", false);
-    this.userNextAnswer.setAttribute("data-rating", 0);
+    this.userNextAnswer.setAttribute(
+      "data-rating",
+      `${this.rating.displayRatingAnswer(this.userNextAnswer.dataset.index)}`
+    );
     this.userNextAnswer.innerHTML = `
         <img src="${
           this.config.answers[idx].src
