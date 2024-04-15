@@ -10,13 +10,17 @@ class Answer extends User {
     this.userNextAnswer.setAttribute("isFavorite", false);
     this.userNextAnswer.setAttribute("data-rating", 0);
     this.userNextAnswer.innerHTML = `
-        <img src="${this.config.answers[idx].src}" alt="user" width="61" height="61"/>
+        <img src="${
+          this.config.answers[idx].src
+        }" alt="user" width="61" height="61"/>
         <p class="comments__answer-title">${this.config.answers[idx].name}</p>
         <p class="comments__answer-date">${this.config.answers[idx].date}</p>
         <p class="comments__answer-text">${this.config.answers[idx].text}</p>
         <p class="comments__answer-text-reply">
           <img src="./src/assets/reply.svg" alt="reply"/>
-            <span class="comments__answer-reply">${this.config.answers[idx].toWhom}
+            <span class="comments__answer-reply">${
+              this.config.answers[idx].toWhom
+            }
             </span>
         </p>
         <button class="comments__answer-favourites-btn button">
@@ -27,7 +31,9 @@ class Answer extends User {
           <button class="comments__btn-minus button">
             <img src="./src/assets/btn_minus.svg" alt="btn-minus" />
           </button>
-            <span class="comments__count">0</span>
+            <span class="comments__count">${this.main._rating.displayRatingAnswer(
+              this.userNextAnswer.dataset.index
+            )}</span>
           <button class="comments__btn-plus button">
             <img src="./src/assets/btn_plus.svg" alt="btn-plus" />
           </button>
@@ -37,6 +43,12 @@ class Answer extends User {
     this.targets.forEach((el) => {
       if (el.dataset.index === this.config.answers[idx].authorIdx) {
         el.after(this.userNextAnswer);
+      }
+      if (
+        this.userNextAnswer.children[6].children[1].textContent &&
+        this.userNextAnswer.children[6].children[1].textContent < 0
+      ) {
+        this.userNextAnswer.children[6].children[1].style.color = "red";
       }
     });
   }

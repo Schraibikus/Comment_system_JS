@@ -11,7 +11,9 @@ class Archive extends User {
     this.userNextComment.setAttribute("data-rating", 0);
     this.userNextComment.innerHTML = `
     <img src="${this.config.users[idx].src}" alt="user" width="61" height="61"/>
-    <p class="comments__answer-title">${this.config.users[idx].first} ${this.config.users[idx].last}</p>
+    <p class="comments__answer-title">${this.config.users[idx].first} ${
+      this.config.users[idx].last
+    }</p>
       <p class="comments__archive-date">${this.config.comments[idx].date}</p>
       <p class="comments__archive-text">${this.config.comments[idx].text}   
       </p>
@@ -25,16 +27,24 @@ class Archive extends User {
         />
         <p>&#160;В избранное</p>
       </button>
-      <div class="comments__rating">
+      <div class="comments__rating comments__rating-archive">
         <button class="comments__btn-minus button">
           <img src="./src/assets/btn_minus.svg" alt="btn-minus" />
         </button>
-        <span class="comments__count">0</span>
+        <span class="comments__count">${this.main._rating.displayRatingArchive(
+          this.userNextComment.dataset.index
+        )}</span>
         <button class="comments__btn-plus button">
           <img src="./src/assets/btn_plus.svg" alt="btn-plus" />
         </button>
       </div>
     `;
     this.userComment.after(this.userNextComment);
+    if (
+      this.userNextComment.children[6].children[1].textContent &&
+      this.userNextComment.children[6].children[1].textContent < 0
+    ) {
+      this.userNextComment.children[6].children[1].style.color = "red";
+    }
   }
 }

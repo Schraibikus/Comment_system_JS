@@ -9,6 +9,8 @@ class Config {
 
   ratings = JSON.parse(localStorage.getItem("ratings")) || [];
 
+  answerRatings = JSON.parse(localStorage.getItem("answerRatings")) || [];
+
   usersIdx = 0;
 
   maxUsers = 20;

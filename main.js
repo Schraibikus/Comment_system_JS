@@ -145,7 +145,8 @@ class Main {
     this._favorites.addToFavoritesArchives();
     this._favorites.addToFavoritesAnswers();
     this.getCommentsInFavorites();
-    this._rating.commentsRating();
+    this._rating.commentsRatingArchive();
+    this._rating.commentsRatingAnswer();
     this._utils.sortCommentsByDate();
     this._utils.sortCommentsByNumserOfRating();
     this._input.onFocusTextarea();
