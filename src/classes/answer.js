@@ -31,7 +31,7 @@ class Answer extends User {
           <button class="comments__btn-minus button">
             <img src="./src/assets/btn_minus.svg" alt="btn-minus" />
           </button>
-            <span class="comments__count">${this.main._rating.displayRatingAnswer(
+            <span class="comments__count">${this.rating.displayRatingAnswer(
               this.userNextAnswer.dataset.index
             )}</span>
           <button class="comments__btn-plus button">

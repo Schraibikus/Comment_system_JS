@@ -8,6 +8,7 @@ class User {
     userTitles,
     config,
     main,
+    rating,
   }) {
     this.firstName = firstName;
     this.lastName = lastName;
@@ -17,6 +18,7 @@ class User {
     this.userTitles = userTitles;
     this.config = config;
     this.main = main;
+    this.rating = rating;
 
     this.commentsHeader = document.querySelector(".comments-header");
     this.userComment = document.querySelector(".comments__user");

@@ -23,6 +23,10 @@ class Main {
   }
 
   render() {
+    this._rating = new Rating({
+      config: this._config,
+      main: this,
+    });
     this._user = new User({
       firstName: this._config.users[this._config.usersIdx].first,
       lastName: this._config.users[this._config.usersIdx].last,
@@ -32,6 +36,7 @@ class Main {
       userTitles: this._config.userTitles,
       config: this._config,
       main: this,
+      rating: this._rating,
     });
     this._archive = new Archive({
       firstName: this._config.users[this._config.usersIdx].first,
@@ -44,6 +49,7 @@ class Main {
       input: this._input,
       date: this._config.date,
       main: this,
+      rating: this._rating,
     });
     this._answer = new Answer({
       firstName: this._config.users[this._config.usersIdx].first,
@@ -55,6 +61,7 @@ class Main {
       config: this._config,
       date: this._config.date,
       main: this,
+      rating: this._rating,
     });
     this._utils = new Utils({
       config: this._config,
@@ -62,10 +69,6 @@ class Main {
       main: this,
     });
     this._favorites = new Favorites({
-      main: this,
-    });
-    this._rating = new Rating({
-      config: this._config,
       main: this,
     });
   }
