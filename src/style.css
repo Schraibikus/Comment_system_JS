@@ -446,7 +446,8 @@
     flex-direction: column;
     gap: 0px;
   }
-  .comments__archive {
+  .comments__archive,
+  .comments__sorted {
     grid-template-rows: 37px 1fr 70px;
   }
 }
@@ -522,7 +523,8 @@
     grid-column: 3/5;
     grid-row: 1/2;
   }
-  .comments__archive {
+  .comments__archive,
+  .comments__sorted {
     margin-bottom: 20px;
   }
   .comments__archive-text {
@@ -551,7 +553,8 @@
   .comment__input-btn {
     grid-column: 1/-1;
   }
-  .comments__archive {
+  .comments__archive,
+  .comments__sorted {
     grid-template-rows: 80px 1fr 70px;
     column-gap: 20px;
   }

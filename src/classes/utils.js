@@ -22,67 +22,41 @@ class Utils {
         this.dropdownImg.classList.add("comments-header--active");
       }
     };
-
     this.links = document.querySelectorAll(".dropdown__link");
-    // this.commentHeaderText = document.querySelectorAll(
-    //   ".comments-header__item-text"
-    // );
-
-    // this.checkedImg = document.createElement("img");
-    // this.checkedImg.src = "./src/assets/check.svg";
-    // this.checkedImg.alt = "drop-down list";
-    // this.checkedImg.width = 15;
-    // this.checkedImg.height = 15;
-    // this.checkedImg.classList.add("dropdown-check");
-
-    // this.links.forEach((link, idx) => {
-    //   link.addEventListener("click", (event) => {
-    //     event.currentTarget.prepend(this.checkedImg);
-    //     this.commentHeaderText[1].textContent = this.config.linksList[idx];
-    //     if (link.firstElementChild.classList.contains("dropdown-check")) {
-    //       event.target.firstElementChild.classList.add(
-    //         "dropdown-check--checked"
-    //       );
-    //     } else event.target.prepend(this.checkedImg);
-    //   });
-    // });
   }
+
   increaseCommentCount() {
     this.commentCount = document.querySelector(".comments-count");
     this.commentCount.innerHTML = `
     &#40;${this.config.comments.length + this.config.answers.length}&#41;
     `;
   }
+
   sortCommentsByDate() {
-    this.links[0].addEventListener("click", () => {
-      alert("идет сортировка.......");
-      setTimeout(() => {
-        alert("Ой, эта фича в разработке)))");
-        window.location.reload();
-      }, 1000);
-    });
-    // this.noSortedCommentsByDate = document.querySelectorAll(
-    //   ".comments__archive-date"
-    // );
-    // this.noSortedAnswersByDate = document.querySelectorAll(
-    //   ".comments__answer-date"
-    // );
-    // this.links[0].addEventListener("click", (event) => {
-    //   alert("идет сортировка.......");
-    //   for (let date of this.noSortedCommentsByDate) {
-    //     const itemDate = {
-    //       date: date.textContent,
-    //       whoseAr: date.closest(".comments__archive").dataset.index,
-    //     };
-    //     this.config.itemsSortByDate.push(itemDate);
-    //     localStorage.setItem(
-    //       "itemsSortByDate",
-    //       JSON.stringify(this.config.itemsSortByDate)
-    //     );
-    //   }
-    //   console.log(this.config.itemsSortByDate.sort());
-    // });
+    this.noSortedByNumserOfDate = document.querySelectorAll('[class*="-date"]');
+
+    this.byDateButtonsList = document.querySelector(".byDate");
+    this.buttonOnAllComents = document.querySelector(
+      ".comments-header__item-text"
+    );
+    let buttonDown = this.byDateButtonsList.children[0];
+    let buttonUp = this.byDateButtonsList.children[1];
+    buttonDown.addEventListener("click", () => {
+      this.displaySortByDate();
+      this.displayNoneNoSortedItems();
+    }),
+      { once: true };
+    buttonUp.addEventListener("click", () => {
+      this.displaySortByDateReverse();
+      this.displayNoneNoSortedItems();
+    }),
+      { once: true };
+    this.buttonOnAllComents.addEventListener("click", () => {
+      this.displayOnNoSortedItems();
+    }),
+      { once: true };
   }
+
   sortCommentsByNumserOfRating() {
     this.noSortedByNumserOfRating =
       document.querySelectorAll(".comments__count");
@@ -106,50 +80,66 @@ class Utils {
       localStorage.setItem("itemsSort", JSON.stringify(this.config.itemsSort));
     }
 
-    this.byDateButtonsList = document.querySelector(".byNumserOfRating");
+    this.byRatingButtonsList = document.querySelector(".byNumserOfRating");
     this.buttonOnAllComents = document.querySelector(
       ".comments-header__item-text"
     );
-    let buttonDown = this.byDateButtonsList.children[0];
-    let buttonUp = this.byDateButtonsList.children[1];
+    let buttonDown = this.byRatingButtonsList.children[0];
+    let buttonUp = this.byRatingButtonsList.children[1];
     buttonDown.addEventListener("click", () => {
-      this.displaySort();
+      this.displaySortByRating();
       this.displayNoneNoSortedItems();
     }),
       { once: true };
     buttonUp.addEventListener("click", () => {
-      this.displaySortReverse();
+      this.displaySortByRatingReverse();
       this.displayNoneNoSortedItems();
     }),
       { once: true };
     this.buttonOnAllComents.addEventListener("click", () => {
       this.displayOnNoSortedItems();
-    });
+    }),
+      { once: true };
   }
-  displaySort() {
+
+  displaySortByRating() {
     this.config.itemsSort.sort((a, b) => (a.rating > b.rating ? 1 : -1));
     this.setUsersSort();
   }
-  displaySortReverse() {
+
+  displaySortByDate() {
+    this.config.itemsSort.sort((a, b) => (a.date > b.date ? 1 : -1));
+    this.setUsersSort();
+  }
+
+  displaySortByRatingReverse() {
     this.config.itemsSort.sort((a, b) => (a.rating < b.rating ? 1 : -1));
     this.setUsersSort();
   }
+  displaySortByDateReverse() {
+    this.config.itemsSort.sort((a, b) => (a.date < b.date ? 1 : -1));
+    this.setUsersSort();
+  }
+
   displayNoneNoSortedItems() {
     this.noSortedItems = document.querySelector(".comments__container");
     this.noSortedItems.style.display = "none";
     this.buttonOnAllComents.style.backgroundColor = "red";
   }
+
   displayOnNoSortedItems() {
     this.noSortedItems.style.display = "block";
     this.buttonOnAllComents.style.backgroundColor = "transparent";
     window.location.reload();
     this.setUsersSortClearDisplay();
   }
+
   setUsersSort() {
     this.config.itemsSort.forEach((el, idx) => {
       if (el != null) this.setNextUserSort(idx);
     });
   }
+
   setNextUserSort(idx) {
     this.userSortNextContainer = document.querySelector(".comments__content");
     this.userSortNext = document.createElement("div");
@@ -166,6 +156,7 @@ class Utils {
     `;
     this.userSortNextContainer.after(this.userSortNext);
   }
+
   setUsersSortClearDisplay() {
     this.userSortNextItems = document.querySelectorAll(".comments__sorted");
     this.userSortNextItems.innerHTML = "";
