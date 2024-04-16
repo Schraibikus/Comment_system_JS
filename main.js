@@ -153,8 +153,6 @@ class Main {
     this._utils.sortCommentsByDate();
     this._utils.sortCommentsByNumserOfRating();
     this._input.onFocusTextarea();
-    // this._utils.displaySort();
-    // this._utils.displaySortReverse();
     this._utils.sortCommentsByRelevance();
     this._utils.sortCommentsByNumberOfResponses();
   }

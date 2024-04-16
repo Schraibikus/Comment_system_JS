@@ -62,7 +62,7 @@ class Utils {
       document.querySelectorAll(".comments__count");
 
     for (let rating of this.noSortedByNumserOfRating) {
-      const itemRating = {
+      const itemSort = {
         src: rating.parentElement.parentElement.children[0].src,
         name: rating.parentElement.parentElement.children[1].textContent,
         date: rating.parentElement.parentElement.children[2].textContent,
@@ -71,7 +71,7 @@ class Utils {
         rating: Number(rating.textContent),
         whoseAr: rating.parentElement.parentElement.dataset.index,
       };
-      this.config.itemsSort.push(itemRating);
+      this.config.itemsSort.push(itemSort);
       if (
         this.config.itemsSort.length >
         this.config.comments.length + this.config.answers.length
