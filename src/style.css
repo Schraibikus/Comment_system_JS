@@ -246,7 +246,8 @@
 }
 
 /* Блок коммента в архиве*/
-.comments__archive {
+.comments__archive,
+.comments__sorted {
   display: grid;
   align-items: start;
   grid-template-columns: min-content min-content min-content 1fr;
@@ -254,7 +255,8 @@
   column-gap: 30px;
   margin-bottom: 40px;
 }
-.comments__archive img {
+.comments__archive img,
+.comments__sorted img {
   border-radius: 50%;
   grid-row: 1/2;
 }

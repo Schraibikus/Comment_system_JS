@@ -89,42 +89,86 @@ class Utils {
 
     for (let rating of this.noSortedByNumserOfRating) {
       const itemRating = {
+        src: rating.parentElement.parentElement.children[0].src,
+        name: rating.parentElement.parentElement.children[1].textContent,
+        date: rating.parentElement.parentElement.children[2].textContent,
+        text: rating.parentElement.parentElement.children[3].textContent,
+        nameReply: rating.parentElement.parentElement.children[4].textContent,
         rating: Number(rating.textContent),
         whoseAr: rating.parentElement.parentElement.dataset.index,
       };
-      this.config.itemsSortByRating.push(itemRating);
+      this.config.itemsSort.push(itemRating);
       if (
-        this.config.itemsSortByRating.length >
+        this.config.itemsSort.length >
         this.config.comments.length + this.config.answers.length
       )
-        this.config.itemsSortByRating.shift();
-      localStorage.setItem(
-        "itemsSortByRating",
-        JSON.stringify(this.config.itemsSortByRating)
-      );
+        this.config.itemsSort.shift();
+      localStorage.setItem("itemsSort", JSON.stringify(this.config.itemsSort));
     }
 
     this.byDateButtonsList = document.querySelector(".byNumserOfRating");
+    this.buttonOnAllComents = document.querySelector(
+      ".comments-header__item-text"
+    );
     let buttonDown = this.byDateButtonsList.children[0];
     let buttonUp = this.byDateButtonsList.children[1];
     buttonDown.addEventListener("click", () => {
       this.displaySort();
-    });
+      this.displayNoneNoSortedItems();
+    }),
+      { once: true };
     buttonUp.addEventListener("click", () => {
       this.displaySortReverse();
+      this.displayNoneNoSortedItems();
+    }),
+      { once: true };
+    this.buttonOnAllComents.addEventListener("click", () => {
+      this.displayOnNoSortedItems();
     });
   }
   displaySort() {
-    this.config.itemsSortByRating.sort((a, b) =>
-      a.rating > b.rating ? 1 : -1
-    );
-    console.log(this.config.itemsSortByRating);
+    this.config.itemsSort.sort((a, b) => (a.rating > b.rating ? 1 : -1));
+    this.setUsersSort();
   }
   displaySortReverse() {
-    this.config.itemsSortByRating.sort((a, b) =>
-      a.rating < b.rating ? 1 : -1
-    );
-    console.log(this.config.itemsSortByRating);
+    this.config.itemsSort.sort((a, b) => (a.rating < b.rating ? 1 : -1));
+    this.setUsersSort();
+  }
+  displayNoneNoSortedItems() {
+    this.noSortedItems = document.querySelector(".comments__container");
+    this.noSortedItems.style.display = "none";
+    this.buttonOnAllComents.style.backgroundColor = "red";
+  }
+  displayOnNoSortedItems() {
+    this.noSortedItems.style.display = "block";
+    this.buttonOnAllComents.style.backgroundColor = "transparent";
+    window.location.reload();
+    this.setUsersSortClearDisplay();
+  }
+  setUsersSort() {
+    this.config.itemsSort.forEach((el, idx) => {
+      if (el != null) this.setNextUserSort(idx);
+    });
+  }
+  setNextUserSort(idx) {
+    this.userSortNextContainer = document.querySelector(".comments__content");
+    this.userSortNext = document.createElement("div");
+    this.userSortNext.classList.add("comments__sorted");
+    this.userSortNext.innerHTML = `
+    <img src="${this.config.itemsSort[idx].src}" alt="user" width="61" height="61"/>
+    <p class="comments__answer-title">${this.config.itemsSort[idx].name}</p>
+      <p class="comments__archive-date">${this.config.itemsSort[idx].date}</p>
+      <p class="comments__archive-text">${this.config.itemsSort[idx].text}   
+      </p>
+      <div class="comments__rating comments__rating-archive">
+        <span class="comments__count">Rating: ${this.config.itemsSort[idx].rating}</span>
+      </div>
+    `;
+    this.userSortNextContainer.after(this.userSortNext);
+  }
+  setUsersSortClearDisplay() {
+    this.userSortNextItems = document.querySelectorAll(".comments__sorted");
+    this.userSortNextItems.innerHTML = "";
   }
 
   sortCommentsByRelevance() {
