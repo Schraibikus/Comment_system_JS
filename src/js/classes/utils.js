@@ -1,14 +1,12 @@
 class Utils {
-  constructor({ config, main, linksList }) {
-    this.config = config;
+  constructor({ main }) {
     this.main = main;
-    this.linksList = linksList;
 
     this.onComments = document.querySelectorAll(".comments-header__item-text");
     this.dropdownImg = document.querySelector(".dropdown-arrow");
     this.dropdownNav = document.querySelector(".comments-header__dropdown-nav");
 
-    this.onComments[1].onclick = () => {
+    this.onComments[1].addEventListener("click", () => {
       this.onComments[1].classList.toggle("comments-header__item-text--active");
       this.dropdownContent = this.dropdownNav.nextElementSibling;
       if (this.dropdownContent.style.display === "block") {
@@ -21,14 +19,14 @@ class Utils {
       } else {
         this.dropdownImg.classList.add("comments-header--active");
       }
-    };
+    });
     this.links = document.querySelectorAll(".dropdown__link");
   }
 
   increaseCommentCount() {
     this.commentCount = document.querySelector(".comments-count");
     this.commentCount.innerHTML = `
-    &#40;${this.config.comments.length + this.config.answers.length}&#41;
+    &#40;${this.main.comments.length + this.main.answers.length}&#41;
     `;
   }
 
@@ -71,13 +69,13 @@ class Utils {
         rating: Number(rating.textContent),
         whoseAr: rating.parentElement.parentElement.dataset.index,
       };
-      this.config.itemsSort.push(itemSort);
+      this.main.itemsSort.push(itemSort);
       if (
-        this.config.itemsSort.length >
-        this.config.comments.length + this.config.answers.length
+        this.main.itemsSort.length >
+        this.main.comments.length + this.main.answers.length
       )
-        this.config.itemsSort.shift();
-      localStorage.setItem("itemsSort", JSON.stringify(this.config.itemsSort));
+        this.main.itemsSort.shift();
+      localStorage.setItem("itemsSort", JSON.stringify(this.main.itemsSort));
     }
 
     this.byRatingButtonsList = document.querySelector(".byNumserOfRating");
@@ -103,21 +101,21 @@ class Utils {
   }
 
   displaySortByRating() {
-    this.config.itemsSort.sort((a, b) => (a.rating > b.rating ? 1 : -1));
+    this.main.itemsSort.sort((a, b) => (a.rating > b.rating ? 1 : -1));
     this.setUsersSort();
   }
 
   displaySortByDate() {
-    this.config.itemsSort.sort((a, b) => (a.date > b.date ? 1 : -1));
+    this.main.itemsSort.sort((a, b) => (a.date > b.date ? 1 : -1));
     this.setUsersSort();
   }
 
   displaySortByRatingReverse() {
-    this.config.itemsSort.sort((a, b) => (a.rating < b.rating ? 1 : -1));
+    this.main.itemsSort.sort((a, b) => (a.rating < b.rating ? 1 : -1));
     this.setUsersSort();
   }
   displaySortByDateReverse() {
-    this.config.itemsSort.sort((a, b) => (a.date < b.date ? 1 : -1));
+    this.main.itemsSort.sort((a, b) => (a.date < b.date ? 1 : -1));
     this.setUsersSort();
   }
 
@@ -135,7 +133,7 @@ class Utils {
   }
 
   setUsersSort() {
-    this.config.itemsSort.forEach((el, idx) => {
+    this.main.itemsSort.forEach((el, idx) => {
       if (el != null) this.setNextUserSort(idx);
     });
   }
@@ -145,13 +143,15 @@ class Utils {
     this.userSortNext = document.createElement("div");
     this.userSortNext.classList.add("comments__sorted");
     this.userSortNext.innerHTML = `
-    <img src="${this.config.itemsSort[idx].src}" alt="user" width="61" height="61"/>
-    <p class="comments__answer-title">${this.config.itemsSort[idx].name}</p>
-      <p class="comments__archive-date">${this.config.itemsSort[idx].date}</p>
-      <p class="comments__archive-text">${this.config.itemsSort[idx].text}   
+    <img src="${this.main.itemsSort[idx].src}" alt="user" width="61" height="61"/>
+    <p class="comments__answer-title">${this.main.itemsSort[idx].name}</p>
+      <p class="comments__archive-date">${this.main.itemsSort[idx].date}</p>
+      <p class="comments__archive-text">${this.main.itemsSort[idx].text}   
       </p>
       <div class="comments__rating comments__rating-archive">
-        <span class="comments__count">Rating: ${this.config.itemsSort[idx].rating}</span>
+          <img src="./src/assets/btn_minus.svg" alt="btn-minus" />
+        <span class="comments__count">${this.main.itemsSort[idx].rating}</span>
+        <img src="./src/assets/btn_plus.svg" alt="btn-plus" />
       </div>
     `;
     this.userSortNextContainer.after(this.userSortNext);
@@ -163,7 +163,7 @@ class Utils {
   }
 
   sortCommentsByRelevance() {
-    this.links[2].addEventListener("click", (event) => {
+    this.links[2].addEventListener("click", () => {
       alert("идет сортировка.......");
       setTimeout(() => {
         alert("Ой, данная фича ещё в разработке)))");
@@ -173,7 +173,7 @@ class Utils {
   }
 
   sortCommentsByNumberOfResponses() {
-    this.links[3].addEventListener("click", (event) => {
+    this.links[3].addEventListener("click", () => {
       alert("идет сортировка.......");
       setTimeout(() => {
         alert("Ой, эта фича тоже ещё в разработке)))");
@@ -182,3 +182,4 @@ class Utils {
     });
   }
 }
+export { Utils };

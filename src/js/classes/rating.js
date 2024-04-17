@@ -1,6 +1,5 @@
 class Rating {
-  constructor({ config, main }) {
-    this.config = config;
+  constructor({ main }) {
     this.main = main;
   }
   commentsRatingArchive() {
@@ -105,8 +104,8 @@ class Rating {
       value: Number(target.parentElement.parentElement.dataset.rating),
       whose: Number(target.parentElement.parentElement.dataset.index),
     };
-    this.config.ratings.push(ratingObj);
-    localStorage.setItem("ratings", JSON.stringify(this.config.ratings));
+    this.main.ratings.push(ratingObj);
+    localStorage.setItem("ratings", JSON.stringify(this.main.ratings));
   }
 
   rememberRatingAnswer(event) {
@@ -115,15 +114,15 @@ class Rating {
       value: Number(target.parentElement.parentElement.dataset.rating),
       whose: Number(target.parentElement.parentElement.dataset.index),
     };
-    this.config.answerRatings.push(ratingAnswerObj);
+    this.main.answerRatings.push(ratingAnswerObj);
     localStorage.setItem(
       "answerRatings",
-      JSON.stringify(this.config.answerRatings)
+      JSON.stringify(this.main.answerRatings)
     );
   }
 
   displayRatingArchive(elem) {
-    let arr = this.config.ratings;
+    let arr = this.main.ratings;
     let result = Object.fromEntries(arr.map((item) => [item.whose, 0]));
     arr.forEach((item) => {
       result[item.whose] += item.value;
@@ -135,7 +134,7 @@ class Rating {
     }
   }
   displayRatingAnswer(elem) {
-    let arr = this.config.answerRatings;
+    let arr = this.main.answerRatings;
     let result = Object.fromEntries(arr.map((item) => [item.whose, 0]));
     arr.forEach((item) => {
       result[item.whose] += item.value;
@@ -147,7 +146,7 @@ class Rating {
     }
   }
   displayArchive(path) {
-    let arr = this.config.ratings;
+    let arr = this.main.ratings;
     let result = Object.fromEntries(arr.map((item) => [item.whose, 0]));
     arr.forEach((item) => {
       result[item.whose] += item.value;
@@ -155,7 +154,7 @@ class Rating {
     return result[path];
   }
   displayAnswer(path) {
-    let arr = this.config.answerRatings;
+    let arr = this.main.answerRatings;
     let result = Object.fromEntries(arr.map((item) => [item.whose, 0]));
     arr.forEach((item) => {
       result[item.whose] += item.value;
@@ -163,3 +162,5 @@ class Rating {
     return result[path];
   }
 }
+
+export { Rating };

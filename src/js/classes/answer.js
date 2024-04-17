@@ -1,6 +1,7 @@
-class Answer extends User {
-  constructor(params) {
-    super(params);
+class Answer {
+  constructor({ main, rating }) {
+    this.main = main;
+    this.rating = rating;
   }
 
   setUser(idx) {
@@ -14,15 +15,15 @@ class Answer extends User {
     );
     this.userNextAnswer.innerHTML = `
         <img src="${
-          this.config.answers[idx].src
+          this.main.answers[idx].src
         }" alt="user" width="61" height="61"/>
-        <p class="comments__answer-title">${this.config.answers[idx].name}</p>
-        <p class="comments__answer-date">${this.config.answers[idx].date}</p>
-        <p class="comments__answer-text">${this.config.answers[idx].text}</p>
+        <p class="comments__answer-title">${this.main.answers[idx].name}</p>
+        <p class="comments__answer-date">${this.main.answers[idx].date}</p>
+        <p class="comments__answer-text">${this.main.answers[idx].text}</p>
         <p class="comments__answer-text-reply">
           <img src="./src/assets/reply.svg" alt="reply"/>
             <span class="comments__answer-reply">${
-              this.config.answers[idx].toWhom
+              this.main.answers[idx].toWhom
             }
             </span>
         </p>
@@ -44,7 +45,7 @@ class Answer extends User {
       `;
     this.targets = document.querySelectorAll(".comments__archive");
     this.targets.forEach((el) => {
-      if (el.dataset.index === this.config.answers[idx].authorIdx) {
+      if (el.dataset.index === this.main.answers[idx].authorIdx) {
         el.after(this.userNextAnswer);
       }
       if (
@@ -64,7 +65,7 @@ class Answer extends User {
     this.buttonAnswers.forEach((el) => {
       el.addEventListener(
         "click",
-        (event) => {
+        () => {
           this.authorAnswerName = document.querySelector(
             ".comments__answer-title-nav"
           );
@@ -77,11 +78,11 @@ class Answer extends User {
           this.userNavAnswer.setAttribute("id", "answerForm");
           this.userNavAnswer.innerHTML = `
             <img src="${
-              this.config.users.at(-1).src
+              this.main.users.at(-1).src
             }" alt="user" width="61" height="61"/>
             <p class="comments__archive-title">${
-              this.config.users.at(-1).first
-            } ${this.config.users.at(-1).last}</p>
+              this.main.users.at(-1).first
+            } ${this.main.users.at(-1).last}</p>
             <textarea
               class="comment__input-form"
               name="comment"
@@ -122,16 +123,16 @@ class Answer extends User {
             } else {
               this.answerOdj = {
                 text: this.textarea.value,
-                date: this.config.formatDate(),
+                date: this.main.formatDate(),
                 name: this.authorAnswerName.textContent,
                 src: this.authorAnswerImg.src,
                 toWhom: this.toWhomAnswerName,
                 authorIdx: this.buttonAnswer.dataset.index,
               };
-              this.config.answers.push(this.answerOdj);
+              this.main.answers.push(this.answerOdj);
               localStorage.setItem(
                 "answers",
-                JSON.stringify(this.config.answers)
+                JSON.stringify(this.main.answers)
               );
               this.setNextAnswers();
               this.buttonAnswerClose();
@@ -194,10 +195,12 @@ class Answer extends User {
   }
 
   setNextAnswers() {
-    this.config.answers.forEach((el, idx) => {
+    this.main.answers.forEach((el, idx) => {
       if (el != null) {
         this.setUser(idx);
       }
     });
   }
 }
+
+export { Answer };

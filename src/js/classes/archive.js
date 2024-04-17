@@ -1,6 +1,10 @@
-class Archive extends User {
-  constructor(params) {
-    super(params);
+// import { Rating } from "./rating.js";
+class Archive {
+  constructor({ main, rating }) {
+    this.main = main;
+    this.rating = rating;
+
+    this.userComment = document.querySelector(".comments__user");
   }
 
   setNextUser(idx) {
@@ -13,12 +17,12 @@ class Archive extends User {
       `${this.rating.displayRatingArchive(this.userNextComment.dataset.index)}`
     );
     this.userNextComment.innerHTML = `
-    <img src="${this.config.users[idx].src}" alt="user" width="61" height="61"/>
-    <p class="comments__answer-title">${this.config.users[idx].first} ${
-      this.config.users[idx].last
+    <img src="${this.main.users[idx].src}" alt="user" width="61" height="61"/>
+    <p class="comments__answer-title">${this.main.users[idx].first} ${
+      this.main.users[idx].last
     }</p>
-      <p class="comments__archive-date">${this.config.comments[idx].date}</p>
-      <p class="comments__archive-text">${this.config.comments[idx].text}   
+      <p class="comments__archive-date">${this.main.comments[idx].date}</p>
+      <p class="comments__archive-text">${this.main.comments[idx].text}   
       </p>
       <button class="comments__archive-answer-btn button">
         <img src="./src/assets/reply.svg" alt="reply" />&#160;Ответить
@@ -51,3 +55,4 @@ class Archive extends User {
     }
   }
 }
+export { Archive };

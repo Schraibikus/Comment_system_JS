@@ -1,7 +1,5 @@
 class Favorites {
-  constructor({ main }) {
-    this.main = main;
-  }
+  constructor() {}
   addToFavoritesArchives() {
     this.buttonsArchiveFavoritesArchives = document.querySelectorAll(
       ".comments__archive-favourites-btn"
@@ -64,3 +62,4 @@ class Favorites {
     event.currentTarget.parentElement.setAttribute("isFavorite", false);
   }
 }
+export { Favorites };

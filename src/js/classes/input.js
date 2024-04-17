@@ -1,7 +1,5 @@
 class Input {
-  constructor({ config, comments, main }) {
-    this.config = config;
-    this.comments = comments;
+  constructor({ main }) {
     this.main = main;
 
     this.forms = document.forms;
@@ -12,7 +10,7 @@ class Input {
     this.buttonSubmit = this.commentsFormsElements[2];
     this.lengthCommentError = document.querySelector(".comments__output-error");
 
-    this.textarea.oninput = () => {
+    this.textarea.addEventListener("input", () => {
       this.output.textContent = 0 + this.textarea.value.length + "/1000";
       if (this.textarea.value.length > 0) {
         this.buttonSubmitReady();
@@ -29,24 +27,23 @@ class Input {
       }
       this.textarea.style.height = 0;
       this.textarea.style.height = this.textarea.scrollHeight + "px";
-    };
+    });
 
-    this.commentsForms.onsubmit = (event) => {
+    this.commentsForms.addEventListener("submit", (event) => {
       if (
         this.textarea.value.length === 0 ||
         this.textarea.value.length > 1000
       ) {
         event.preventDefault();
-        alert("ошибка");
       } else {
         this.commentObj = {
           text: this.textarea.value,
-          date: this.config.formatDate(),
+          date: this.main.formatDate(),
         };
-        this.config.comments.push(this.commentObj);
-        localStorage.setItem("comments", JSON.stringify(this.config.comments));
+        this.main.comments.push(this.commentObj);
+        localStorage.setItem("comments", JSON.stringify(this.main.comments));
       }
-    };
+    });
   }
 
   buttonSubmitReady() {
@@ -70,3 +67,4 @@ class Input {
     }
   }
 }
+export { Input };

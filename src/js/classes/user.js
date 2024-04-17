@@ -1,24 +1,6 @@
 class User {
-  constructor({
-    firstName,
-    lastName,
-    src,
-    users,
-    usersIdx,
-    userTitles,
-    config,
-    main,
-    rating,
-  }) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.src = src;
-    this.users = users;
-    this.usersIdx = usersIdx;
-    this.userTitles = userTitles;
-    this.config = config;
+  constructor({ main }) {
     this.main = main;
-    this.rating = rating;
 
     this.commentsHeader = document.querySelector(".comments-header");
     this.userComment = document.querySelector(".comments__user");
@@ -29,10 +11,10 @@ class User {
     this.userComment.classList.add("comments__user");
     this.userComment.innerHTML = `  
     <img class="authorImg" src="${
-      this.config.users.at(-1).src
+      this.main.users.at(-1).src
     }" alt="user" width="61" height="61"/>
-    <p class="comments__answer-title-nav">${this.config.users.at(-1).first} ${
-      this.config.users.at(-1).last
+    <p class="comments__answer-title-nav">${this.main.users.at(-1).first} ${
+      this.main.users.at(-1).last
     }</p>
         <textarea
           class="comment__input-form"
@@ -50,13 +32,13 @@ class User {
   }
   setUserName(idx) {
     this.userImg = document.createElement("img");
-    this.userImg.src = `${this.config.users[idx].src}`;
+    this.userImg.src = `${this.main.users[idx].src}`;
     this.userImg.alt = "user";
     this.userImg.width = 61;
     this.userImg.height = 61;
     this.userName = document.createElement("p");
     this.userName.classList.add("comments__archive-title");
-    this.userName.textContent = `${this.config.users[idx].first} ${this.config.users[idx].last}`;
+    this.userName.textContent = `${this.main.users[idx].first} ${this.main.users[idx].last}`;
 
     this.userComment.prepend(this.userImg);
     this.userImg.remove();
@@ -65,3 +47,5 @@ class User {
     this.userName.remove();
   }
 }
+
+export { User };
