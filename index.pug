@@ -1,0 +1,53 @@
+doctype html
+html(lang='en')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    link(rel='stylesheet' href='./dist/main.css')
+    title The frontend part for the comment system module
+  body
+    header.header
+    aside.sidebar
+    main.main
+      .wrapper
+        section.unknown-content
+          .unknown-content__item.unknown-content__item--small
+          .unknown-content__item.unknown-content__item--small
+          .unknown-content__item.unknown-content__item--small
+          .unknown-content__item.unknown-content__item--small
+          .unknown-content__item.unknown-content__item--small
+          .unknown-content__item.unknown-content__item--small
+          .unknown-content__item.unknown-content__item--small
+          .unknown-content__item.unknown-content__item--small
+          .unknown-content__item.unknown-content__item--big
+        section.comments
+          .comments-header
+            .comments-header__item.comments-header__item-quantity
+              p.comments-header__item-text
+                | Комментарии 
+                span.comments-count (0)
+            .comments-header__item.comments-header__item-rating
+              .comments-header__dropdown
+                .comments-header__dropdown-nav
+                  p.comments-header__item-text По количеству оценок
+                  img.dropdown-arrow(src='./src/assets/arrow.svg' alt='drop-down list' width='24' height='24')
+                ul.comments-header__dropdown-container
+                  li.dropdown__link
+                    .dropdown__link-content.byDate
+                      | По дате
+                      img.arrow-down(src='./src/assets/arrow.svg' alt='drop-down list' width='20' height='20')
+                      img.arrow-up(src='./src/assets/arrow.svg' alt='drop-down list' width='20' height='20')
+                  li.dropdown__link
+                    .dropdown__link-content.byNumserOfRating
+                      | По количеству оценок
+                      img.arrow-down(src='./src/assets/arrow.svg' alt='drop-down list' width='20' height='20')
+                      img.arrow-up(src='./src/assets/arrow.svg' alt='drop-down list' width='20' height='20')
+                  li.dropdown__link По актуальности
+                  li.dropdown__link По количеству ответов
+            .comments-header__item.comments-header__item-favourites
+              p.comments-header__item-text Избранное
+              img(src='./src/assets/heart.svg' alt='heart' width='24' height='24')
+          .comments__container
+            form.comments__user(style='display: none')
+          article.comments__content
+    script(type='module' src='./dist/main.js')
