@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "css-loader": "^7.1.1",
+    "mini-css-extract-plugin": "^2.9.0",
     "style-loader": "^4.0.0",
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4"
@@ -60,6 +61,7 @@
     "p-limit": "^2.3.0",
     "p-locate": "^4.1.0",
     "p-try": "^2.2.0",
+    "path": "^0.12.7",
     "path-exists": "^4.0.0",
     "path-key": "^3.1.1",
     "path-parse": "^1.0.7",
