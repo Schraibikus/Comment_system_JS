@@ -154,6 +154,7 @@ class Main {
     this.utils.sortCommentsByNumserOfRating();
     this.input.onFocusTextarea();
     this.utils.sortCommentsByRelevance();
+    this.utils.dropdownMenu();
     this.utils.sortCommentsByNumberOfResponses();
   }
 }

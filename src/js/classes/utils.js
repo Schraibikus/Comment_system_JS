@@ -2,6 +2,10 @@ class Utils {
   constructor({ main }) {
     this.main = main;
 
+    this.links = document.querySelectorAll(".dropdown__link");
+  }
+
+  dropdownMenu() {
     this.onComments = document.querySelectorAll(".comments-header__item-text");
     this.dropdownImg = document.querySelector(".dropdown-arrow");
     this.dropdownNav = document.querySelector(".comments-header__dropdown-nav");
@@ -20,7 +24,6 @@ class Utils {
         this.dropdownImg.classList.add("comments-header--active");
       }
     });
-    this.links = document.querySelectorAll(".dropdown__link");
   }
 
   increaseCommentCount() {
