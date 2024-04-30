@@ -4,8 +4,9 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  mode: "development",
   entry: path.resolve(__dirname, "src/js/index.js"),
+  mode: "development",
+  devtool: "source-map",
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "main.js",
@@ -13,13 +14,15 @@ module.exports = {
   },
   devServer: {
     static: {
-      directory: path.join(__dirname, "dist"),
+      directory: path.resolve(__dirname, "dist"),
     },
+    port: 3001,
+    hot: true,
   },
   plugins: [
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
-      template: "./index.pug",
+      template: path.resolve(__dirname, "./index.pug"),
       filename: "index.html",
     }),
   ],

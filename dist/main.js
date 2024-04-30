@@ -1,11 +1,3 @@
-/*
- * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
- * This devtool is neither made for production nor for readable output files.
- * It uses "eval()" calls to create a separate source file in the browser devtools.
- * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
- * or disable the default devtool with "devtool: false".
- * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
- */
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
@@ -16,7 +8,9 @@
   \***************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://comment_system/./src/css/reset.css?");
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
 
 /***/ }),
 
@@ -26,7 +20,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
   \***************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://comment_system/./src/css/style.css?");
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
 
 /***/ }),
 
@@ -36,7 +32,217 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
   \**********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Answer: () => (/* binding */ Answer)\n/* harmony export */ });\nclass Answer {\r\n  constructor({ main, rating }) {\r\n    this.main = main;\r\n    this.rating = rating;\r\n  }\r\n\r\n  setUser(idx) {\r\n    this.userNextAnswer = document.createElement(\"div\");\r\n    this.userNextAnswer.classList.add(\"comments__answer\");\r\n    this.userNextAnswer.setAttribute(\"data-index\", idx);\r\n    this.userNextAnswer.setAttribute(\"isFavorite\", false);\r\n    this.userNextAnswer.setAttribute(\r\n      \"data-rating\",\r\n      `${this.rating.displayRatingAnswer(this.userNextAnswer.dataset.index)}`\r\n    );\r\n    this.userNextAnswer.innerHTML = `\r\n        <img src=\"${\r\n          this.main.answers[idx].src\r\n        }\" alt=\"user\" width=\"61\" height=\"61\"/>\r\n        <p class=\"comments__answer-title\">${this.main.answers[idx].name}</p>\r\n        <p class=\"comments__answer-date\">${this.main.answers[idx].date}</p>\r\n        <p class=\"comments__answer-text\">${this.main.answers[idx].text}</p>\r\n        <p class=\"comments__answer-text-reply\">\r\n          <img src=\"./src/assets/reply.svg\" alt=\"reply\"/>\r\n            <span class=\"comments__answer-reply\">${\r\n              this.main.answers[idx].toWhom\r\n            }\r\n            </span>\r\n        </p>\r\n        <button class=\"comments__answer-favourites-btn button\">\r\n          <img src=\"./src/assets/heart_empty.svg\" alt=\"heart_empty\"/>\r\n          <p>&#160;В избранное</p>\r\n        </button>\r\n        <div class=\"comments__rating comments__rating-answer\">\r\n          <button class=\"comments__btn-minus button\">\r\n            <img src=\"./src/assets/btn_minus.svg\" alt=\"btn-minus\" />\r\n          </button>\r\n            <span class=\"comments__count\">${this.rating.displayRatingAnswer(\r\n              this.userNextAnswer.dataset.index\r\n            )}</span>\r\n          <button class=\"comments__btn-plus button\">\r\n            <img src=\"./src/assets/btn_plus.svg\" alt=\"btn-plus\" />\r\n          </button>\r\n        </div>\r\n      `;\r\n    this.targets = document.querySelectorAll(\".comments__archive\");\r\n    this.targets.forEach((el) => {\r\n      if (el.dataset.index === this.main.answers[idx].authorIdx) {\r\n        el.after(this.userNextAnswer);\r\n      }\r\n      if (\r\n        this.userNextAnswer.children[6].children[1].textContent &&\r\n        this.userNextAnswer.children[6].children[1].textContent < 0\r\n      ) {\r\n        this.userNextAnswer.children[6].children[1].style.color = \"red\";\r\n      }\r\n    });\r\n  }\r\n\r\n  commentAnswer() {\r\n    this.buttonAnswers = document.querySelectorAll(\r\n      \".comments__archive-answer-btn\"\r\n    );\r\n\r\n    this.buttonAnswers.forEach((el) => {\r\n      el.addEventListener(\r\n        \"click\",\r\n        () => {\r\n          this.authorAnswerName = document.querySelector(\r\n            \".comments__answer-title-nav\"\r\n          );\r\n          this.authorAnswerImg = document.querySelector(\".authorImg\");\r\n          this.buttonAnswer = el.parentElement;\r\n          this.toWhomAnswerName = this.buttonAnswer.children[1].textContent;\r\n          this.authorIdx = this.buttonAnswer.dataset.index;\r\n          this.userNavAnswer = document.createElement(\"form\");\r\n          this.userNavAnswer.classList.add(\"comments__user\");\r\n          this.userNavAnswer.setAttribute(\"id\", \"answerForm\");\r\n          this.userNavAnswer.innerHTML = `\r\n            <img src=\"${\r\n              this.main.users.at(-1).src\r\n            }\" alt=\"user\" width=\"61\" height=\"61\"/>\r\n            <p class=\"comments__archive-title\">${\r\n              this.main.users.at(-1).first\r\n            } ${this.main.users.at(-1).last}</p>\r\n            <textarea\r\n              class=\"comment__input-form\"\r\n              name=\"comment\"\r\n              id=\"comment\"\r\n              rows=\"1\"\r\n              placeholder=\"Введите текст сообщения...\"\r\n            ></textarea>\r\n            <output class=\"comment__output-form\">Макс. 1000 символов</output>\r\n            <p class=\"comments__output-error\">Слишком длинное сообщение</p>\r\n            <button class=\"comment__input-btn button\" type=\"submit\">\r\n              Отправить\r\n            </button>\r\n            <button class=\"comment__input-btn comment__input-btn-answer button\">\r\n              Отменить\r\n            </button>\r\n          `;\r\n          this.buttonAnswer.after(this.userNavAnswer);\r\n\r\n          this.commentsFormsElements = this.userNavAnswer.elements;\r\n          this.textarea = this.commentsFormsElements[0];\r\n          this.output = this.commentsFormsElements[1];\r\n          this.buttonSubmit = this.commentsFormsElements[2];\r\n          this.lengthCommentError = document.querySelector(\r\n            \".comments__output-error\"\r\n          );\r\n          this.onFocusTextarea();\r\n          this.commentAnswerInput();\r\n          this.buttonAnswerClose();\r\n\r\n          this.userNavAnswer.addEventListener(\"submit\", (event) => {\r\n            if (\r\n              this.textarea.value.length === 0 ||\r\n              this.textarea.value.length > 1000\r\n            ) {\r\n              event.preventDefault();\r\n              this.buttonAnswerClose();\r\n              alert(\"ошибка\");\r\n            } else {\r\n              this.answerOdj = {\r\n                text: this.textarea.value,\r\n                date: this.main.formatDate(),\r\n                name: this.authorAnswerName.textContent,\r\n                src: this.authorAnswerImg.src,\r\n                toWhom: this.toWhomAnswerName,\r\n                authorIdx: this.buttonAnswer.dataset.index,\r\n              };\r\n              this.main.answers.push(this.answerOdj);\r\n              localStorage.setItem(\r\n                \"answers\",\r\n                JSON.stringify(this.main.answers)\r\n              );\r\n              this.setNextAnswers();\r\n              this.buttonAnswerClose();\r\n            }\r\n          });\r\n        },\r\n        { once: true }\r\n      );\r\n    });\r\n  }\r\n\r\n  commentAnswerInput() {\r\n    this.textarea.addEventListener(\"input\", () => {\r\n      this.output.textContent = 0 + this.textarea.value.length + \"/1000\";\r\n      if (this.textarea.value.length > 0) {\r\n        this.buttonSubmitReady();\r\n      } else {\r\n        this.buttonSubmitReady();\r\n      }\r\n      if (this.textarea.value.length > 1000) {\r\n        this.output.style.color = \"red\";\r\n        this.lengthCommentError.style.display = \"block\";\r\n        this.buttonSubmitReady();\r\n      } else {\r\n        this.output.style.color = \"black\";\r\n        this.lengthCommentError.style.display = \"none\";\r\n      }\r\n      this.textarea.style.height = 0;\r\n      this.textarea.style.height = this.textarea.scrollHeight + \"px\";\r\n    });\r\n  }\r\n\r\n  buttonAnswerClose() {\r\n    this.btnAnswerClose = document.querySelector(\".comment__input-btn-answer\");\r\n    this.btnAnswerClose.addEventListener(\"click\", (event) => {\r\n      event.preventDefault();\r\n      this.userNavAnswer.remove();\r\n    });\r\n  }\r\n\r\n  onFocusTextarea() {\r\n    for (let element of this.commentsFormsElements) {\r\n      if (element.type != \"checkbox\" && element.type != \"submit\") {\r\n        element.addEventListener(\"focus\", function () {\r\n          element.style.backgroundColor = \"lightyellow\";\r\n        });\r\n        element.addEventListener(\"blur\", function () {\r\n          element.style.backgroundColor = \"white\";\r\n        });\r\n      }\r\n    }\r\n  }\r\n\r\n  buttonSubmitReady() {\r\n    if (this.textarea.value.length > 0 && this.textarea.value.length < 1000) {\r\n      this.buttonSubmit.classList.add(\"comment__input-btn--ready\");\r\n    } else {\r\n      this.buttonSubmit.classList.remove(\"comment__input-btn--ready\");\r\n    }\r\n  }\r\n\r\n  setNextAnswers() {\r\n    this.main.answers.forEach((el, idx) => {\r\n      if (el != null) {\r\n        this.setUser(idx);\r\n      }\r\n    });\r\n  }\r\n}\r\n\r\n\r\n\n\n//# sourceURL=webpack://comment_system/./src/js/classes/answer.js?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Answer: () => (/* binding */ Answer)
+/* harmony export */ });
+class Answer {
+  constructor({ main, rating }) {
+    this.main = main;
+    this.rating = rating;
+  }
+
+  setUser(idx) {
+    this.userNextAnswer = document.createElement("div");
+    this.userNextAnswer.classList.add("comments__answer");
+    this.userNextAnswer.setAttribute("data-index", idx);
+    this.userNextAnswer.setAttribute("isFavorite", false);
+    this.userNextAnswer.setAttribute(
+      "data-rating",
+      `${this.rating.displayRatingAnswer(this.userNextAnswer.dataset.index)}`
+    );
+    this.userNextAnswer.innerHTML = `
+        <img src="${
+          this.main.answers[idx].src
+        }" alt="user" width="61" height="61"/>
+        <p class="comments__answer-title">${this.main.answers[idx].name}</p>
+        <p class="comments__answer-date">${this.main.answers[idx].date}</p>
+        <p class="comments__answer-text">${this.main.answers[idx].text}</p>
+        <p class="comments__answer-text-reply">
+          <img src="./src/assets/reply.svg" alt="reply"/>
+            <span class="comments__answer-reply">${
+              this.main.answers[idx].toWhom
+            }
+            </span>
+        </p>
+        <button class="comments__answer-favourites-btn button">
+          <img src="./src/assets/heart_empty.svg" alt="heart_empty"/>
+          <p>&#160;В избранное</p>
+        </button>
+        <div class="comments__rating comments__rating-answer">
+          <button class="comments__btn-minus button">
+            <img src="./src/assets/btn_minus.svg" alt="btn-minus" />
+          </button>
+            <span class="comments__count">${this.rating.displayRatingAnswer(
+              this.userNextAnswer.dataset.index
+            )}</span>
+          <button class="comments__btn-plus button">
+            <img src="./src/assets/btn_plus.svg" alt="btn-plus" />
+          </button>
+        </div>
+      `;
+    this.targets = document.querySelectorAll(".comments__archive");
+    this.targets.forEach((el) => {
+      if (el.dataset.index === this.main.answers[idx].authorIdx) {
+        el.after(this.userNextAnswer);
+      }
+      if (
+        this.userNextAnswer.children[6].children[1].textContent &&
+        this.userNextAnswer.children[6].children[1].textContent < 0
+      ) {
+        this.userNextAnswer.children[6].children[1].style.color = "red";
+      }
+    });
+  }
+
+  commentAnswer() {
+    this.buttonAnswers = document.querySelectorAll(
+      ".comments__archive-answer-btn"
+    );
+
+    this.buttonAnswers.forEach((el) => {
+      el.addEventListener(
+        "click",
+        () => {
+          this.authorAnswerName = document.querySelector(
+            ".comments__answer-title-nav"
+          );
+          this.authorAnswerImg = document.querySelector(".authorImg");
+          this.buttonAnswer = el.parentElement;
+          this.toWhomAnswerName = this.buttonAnswer.children[1].textContent;
+          this.authorIdx = this.buttonAnswer.dataset.index;
+          this.userNavAnswer = document.createElement("form");
+          this.userNavAnswer.classList.add("comments__user");
+          this.userNavAnswer.setAttribute("id", "answerForm");
+          this.userNavAnswer.innerHTML = `
+            <img src="${
+              this.main.users.at(-1).src
+            }" alt="user" width="61" height="61"/>
+            <p class="comments__archive-title">${
+              this.main.users.at(-1).first
+            } ${this.main.users.at(-1).last}</p>
+            <textarea
+              class="comment__input-form"
+              name="comment"
+              id="comment"
+              rows="1"
+              placeholder="Введите текст сообщения..."
+            ></textarea>
+            <output class="comment__output-form">Макс. 1000 символов</output>
+            <p class="comments__output-error">Слишком длинное сообщение</p>
+            <button class="comment__input-btn button" type="submit">
+              Отправить
+            </button>
+            <button class="comment__input-btn comment__input-btn-answer button">
+              Отменить
+            </button>
+          `;
+          this.buttonAnswer.after(this.userNavAnswer);
+
+          this.commentsFormsElements = this.userNavAnswer.elements;
+          this.textarea = this.commentsFormsElements[0];
+          this.output = this.commentsFormsElements[1];
+          this.buttonSubmit = this.commentsFormsElements[2];
+          this.lengthCommentError = document.querySelector(
+            ".comments__output-error"
+          );
+          this.onFocusTextarea();
+          this.commentAnswerInput();
+          this.buttonAnswerClose();
+
+          this.userNavAnswer.addEventListener("submit", (event) => {
+            if (
+              this.textarea.value.length === 0 ||
+              this.textarea.value.length > 1000
+            ) {
+              event.preventDefault();
+              this.buttonAnswerClose();
+              alert("ошибка");
+            } else {
+              this.answerOdj = {
+                text: this.textarea.value,
+                date: this.main.formatDate(),
+                name: this.authorAnswerName.textContent,
+                src: this.authorAnswerImg.src,
+                toWhom: this.toWhomAnswerName,
+                authorIdx: this.buttonAnswer.dataset.index,
+              };
+              this.main.answers.push(this.answerOdj);
+              localStorage.setItem(
+                "answers",
+                JSON.stringify(this.main.answers)
+              );
+              this.setNextAnswers();
+              this.buttonAnswerClose();
+            }
+          });
+        },
+        { once: true }
+      );
+    });
+  }
+
+  commentAnswerInput() {
+    this.textarea.addEventListener("input", () => {
+      this.output.textContent = 0 + this.textarea.value.length + "/1000";
+      if (this.textarea.value.length > 0) {
+        this.buttonSubmitReady();
+      } else {
+        this.buttonSubmitReady();
+      }
+      if (this.textarea.value.length > 1000) {
+        this.output.style.color = "red";
+        this.lengthCommentError.style.display = "block";
+        this.buttonSubmitReady();
+      } else {
+        this.output.style.color = "black";
+        this.lengthCommentError.style.display = "none";
+      }
+      this.textarea.style.height = 0;
+      this.textarea.style.height = this.textarea.scrollHeight + "px";
+    });
+  }
+
+  buttonAnswerClose() {
+    this.btnAnswerClose = document.querySelector(".comment__input-btn-answer");
+    this.btnAnswerClose.addEventListener("click", (event) => {
+      event.preventDefault();
+      this.userNavAnswer.remove();
+    });
+  }
+
+  onFocusTextarea() {
+    for (let element of this.commentsFormsElements) {
+      if (element.type != "checkbox" && element.type != "submit") {
+        element.addEventListener("focus", function () {
+          element.style.backgroundColor = "lightyellow";
+        });
+        element.addEventListener("blur", function () {
+          element.style.backgroundColor = "white";
+        });
+      }
+    }
+  }
+
+  buttonSubmitReady() {
+    if (this.textarea.value.length > 0 && this.textarea.value.length < 1000) {
+      this.buttonSubmit.classList.add("comment__input-btn--ready");
+    } else {
+      this.buttonSubmit.classList.remove("comment__input-btn--ready");
+    }
+  }
+
+  setNextAnswers() {
+    this.main.answers.forEach((el, idx) => {
+      if (el != null) {
+        this.setUser(idx);
+      }
+    });
+  }
+}
+
+
+
 
 /***/ }),
 
@@ -46,7 +252,69 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \***********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Archive: () => (/* binding */ Archive)\n/* harmony export */ });\n// import { Rating } from \"./rating.js\";\r\nclass Archive {\r\n  constructor({ main, rating }) {\r\n    this.main = main;\r\n    this.rating = rating;\r\n\r\n    this.userComment = document.querySelector(\".comments__user\");\r\n  }\r\n\r\n  setNextUser(idx) {\r\n    this.userNextComment = document.createElement(\"div\");\r\n    this.userNextComment.classList.add(\"comments__archive\");\r\n    this.userNextComment.setAttribute(\"data-index\", idx);\r\n    this.userNextComment.setAttribute(\"isFavorite\", false);\r\n    this.userNextComment.setAttribute(\r\n      \"data-rating\",\r\n      `${this.rating.displayRatingArchive(this.userNextComment.dataset.index)}`\r\n    );\r\n    this.userNextComment.innerHTML = `\r\n    <img src=\"${this.main.users[idx].src}\" alt=\"user\" width=\"61\" height=\"61\"/>\r\n    <p class=\"comments__answer-title\">${this.main.users[idx].first} ${\r\n      this.main.users[idx].last\r\n    }</p>\r\n      <p class=\"comments__archive-date\">${this.main.comments[idx].date}</p>\r\n      <p class=\"comments__archive-text\">${this.main.comments[idx].text}   \r\n      </p>\r\n      <button class=\"comments__archive-answer-btn button\">\r\n        <img src=\"./src/assets/reply.svg\" alt=\"reply\" />&#160;Ответить\r\n      </button>\r\n      <button class=\"comments__archive-favourites-btn button\">\r\n        <img\r\n          src=\"./src/assets/heart_empty.svg\"\r\n          alt=\"heart_empty\"\r\n        />\r\n        <p>&#160;В избранное</p>\r\n      </button>\r\n      <div class=\"comments__rating comments__rating-archive\">\r\n        <button class=\"comments__btn-minus button\">\r\n          <img src=\"./src/assets/btn_minus.svg\" alt=\"btn-minus\" />\r\n        </button>\r\n        <span class=\"comments__count\">${this.rating.displayRatingArchive(\r\n          this.userNextComment.dataset.index\r\n        )}</span>\r\n        <button class=\"comments__btn-plus button\">\r\n          <img src=\"./src/assets/btn_plus.svg\" alt=\"btn-plus\" />\r\n        </button>\r\n      </div>\r\n    `;\r\n    this.userComment.after(this.userNextComment);\r\n    if (\r\n      this.userNextComment.children[6].children[1].textContent &&\r\n      this.userNextComment.children[6].children[1].textContent < 0\r\n    ) {\r\n      this.userNextComment.children[6].children[1].style.color = \"red\";\r\n    }\r\n  }\r\n}\r\n\r\n\n\n//# sourceURL=webpack://comment_system/./src/js/classes/archive.js?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Archive: () => (/* binding */ Archive)
+/* harmony export */ });
+// import { Rating } from "./rating.js";
+class Archive {
+  constructor({ main, rating }) {
+    this.main = main;
+    this.rating = rating;
+
+    this.userComment = document.querySelector(".comments__user");
+  }
+
+  setNextUser(idx) {
+    this.userNextComment = document.createElement("div");
+    this.userNextComment.classList.add("comments__archive");
+    this.userNextComment.setAttribute("data-index", idx);
+    this.userNextComment.setAttribute("isFavorite", false);
+    this.userNextComment.setAttribute(
+      "data-rating",
+      `${this.rating.displayRatingArchive(this.userNextComment.dataset.index)}`
+    );
+    this.userNextComment.innerHTML = `
+    <img src="${this.main.users[idx].src}" alt="user" width="61" height="61"/>
+    <p class="comments__answer-title">${this.main.users[idx].first} ${
+      this.main.users[idx].last
+    }</p>
+      <p class="comments__archive-date">${this.main.comments[idx].date}</p>
+      <p class="comments__archive-text">${this.main.comments[idx].text}   
+      </p>
+      <button class="comments__archive-answer-btn button">
+        <img src="./src/assets/reply.svg" alt="reply" />&#160;Ответить
+      </button>
+      <button class="comments__archive-favourites-btn button">
+        <img
+          src="./src/assets/heart_empty.svg"
+          alt="heart_empty"
+        />
+        <p>&#160;В избранное</p>
+      </button>
+      <div class="comments__rating comments__rating-archive">
+        <button class="comments__btn-minus button">
+          <img src="./src/assets/btn_minus.svg" alt="btn-minus" />
+        </button>
+        <span class="comments__count">${this.rating.displayRatingArchive(
+          this.userNextComment.dataset.index
+        )}</span>
+        <button class="comments__btn-plus button">
+          <img src="./src/assets/btn_plus.svg" alt="btn-plus" />
+        </button>
+      </div>
+    `;
+    this.userComment.after(this.userNextComment);
+    if (
+      this.userNextComment.children[6].children[1].textContent &&
+      this.userNextComment.children[6].children[1].textContent < 0
+    ) {
+      this.userNextComment.children[6].children[1].style.color = "red";
+    }
+  }
+}
+
+
 
 /***/ }),
 
@@ -56,7 +324,76 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Favorites: () => (/* binding */ Favorites)\n/* harmony export */ });\nclass Favorites {\r\n  constructor() {}\r\n  addToFavoritesArchives() {\r\n    this.buttonsArchiveFavoritesArchives = document.querySelectorAll(\r\n      \".comments__archive-favourites-btn\"\r\n    );\r\n    this.buttonsArchiveFavoritesArchives.forEach((el) => {\r\n      el.addEventListener(\"click\", (event) => {\r\n        event.currentTarget.classList.toggle(\r\n          \"comments__archive-favourites-btn--active\"\r\n        );\r\n        if (\r\n          event.currentTarget.classList.contains(\r\n            \"comments__archive-favourites-btn--active\"\r\n          )\r\n        ) {\r\n          this.addToFavoritesContentBefore(event);\r\n        } else {\r\n          this.addToFavoritesContentAfter(event);\r\n        }\r\n      });\r\n    });\r\n  }\r\n\r\n  addToFavoritesAnswers() {\r\n    this.buttonsArchiveFavoritesAnswers = document.querySelectorAll(\r\n      \".comments__answer-favourites-btn\"\r\n    );\r\n    this.buttonsArchiveFavoritesAnswers.forEach((el) => {\r\n      el.addEventListener(\"click\", (event) => {\r\n        event.currentTarget.classList.toggle(\r\n          \"comments__answer-favourites-btn--active\"\r\n        );\r\n        if (\r\n          event.currentTarget.classList.contains(\r\n            \"comments__answer-favourites-btn--active\"\r\n          )\r\n        ) {\r\n          this.addToFavoritesContentBefore(event);\r\n        } else {\r\n          this.addToFavoritesContentAfter(event);\r\n        }\r\n      });\r\n    });\r\n  }\r\n  addToFavoritesContentBefore(event) {\r\n    event.currentTarget.children[0].src = \"./src/assets/heart_full.svg\";\r\n    event.currentTarget.children[0].alt = \"heart_full\";\r\n    event.currentTarget.children[0].width = \"24\";\r\n    event.currentTarget.children[0].height = \"24\";\r\n    event.currentTarget.children[1].textContent = \"\\u00A0В избранном\";\r\n    event.currentTarget.children[1].style.color = \"#000\";\r\n    event.currentTarget.parentElement.setAttribute(\"isFavorite\", true);\r\n  }\r\n  addToFavoritesContentAfter(event) {\r\n    event.currentTarget.children[0].src = \"./src/assets/heart_empty.svg\";\r\n    event.currentTarget.children[0].alt = \"heart_empty\";\r\n    event.currentTarget.children[0].width = \"24\";\r\n    event.currentTarget.children[0].height = \"24\";\r\n    event.currentTarget.children[1].textContent = \"\\u00A0В избранное\";\r\n    event.currentTarget.children[1].style.color = \"#a1a1a1\";\r\n    event.currentTarget.parentElement.setAttribute(\"isFavorite\", false);\r\n  }\r\n}\r\n\r\n\n\n//# sourceURL=webpack://comment_system/./src/js/classes/favourites.js?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Favorites: () => (/* binding */ Favorites)
+/* harmony export */ });
+class Favorites {
+  constructor() {}
+  addToFavoritesArchives() {
+    this.buttonsArchiveFavoritesArchives = document.querySelectorAll(
+      ".comments__archive-favourites-btn"
+    );
+    this.buttonsArchiveFavoritesArchives.forEach((el) => {
+      el.addEventListener("click", (event) => {
+        event.currentTarget.classList.toggle(
+          "comments__archive-favourites-btn--active"
+        );
+        if (
+          event.currentTarget.classList.contains(
+            "comments__archive-favourites-btn--active"
+          )
+        ) {
+          this.addToFavoritesContentBefore(event);
+        } else {
+          this.addToFavoritesContentAfter(event);
+        }
+      });
+    });
+  }
+
+  addToFavoritesAnswers() {
+    this.buttonsArchiveFavoritesAnswers = document.querySelectorAll(
+      ".comments__answer-favourites-btn"
+    );
+    this.buttonsArchiveFavoritesAnswers.forEach((el) => {
+      el.addEventListener("click", (event) => {
+        event.currentTarget.classList.toggle(
+          "comments__answer-favourites-btn--active"
+        );
+        if (
+          event.currentTarget.classList.contains(
+            "comments__answer-favourites-btn--active"
+          )
+        ) {
+          this.addToFavoritesContentBefore(event);
+        } else {
+          this.addToFavoritesContentAfter(event);
+        }
+      });
+    });
+  }
+  addToFavoritesContentBefore(event) {
+    event.currentTarget.children[0].src = "./src/assets/heart_full.svg";
+    event.currentTarget.children[0].alt = "heart_full";
+    event.currentTarget.children[0].width = "24";
+    event.currentTarget.children[0].height = "24";
+    event.currentTarget.children[1].textContent = "\u00A0В избранном";
+    event.currentTarget.children[1].style.color = "#000";
+    event.currentTarget.parentElement.setAttribute("isFavorite", true);
+  }
+  addToFavoritesContentAfter(event) {
+    event.currentTarget.children[0].src = "./src/assets/heart_empty.svg";
+    event.currentTarget.children[0].alt = "heart_empty";
+    event.currentTarget.children[0].width = "24";
+    event.currentTarget.children[0].height = "24";
+    event.currentTarget.children[1].textContent = "\u00A0В избранное";
+    event.currentTarget.children[1].style.color = "#a1a1a1";
+    event.currentTarget.parentElement.setAttribute("isFavorite", false);
+  }
+}
+
+
 
 /***/ }),
 
@@ -66,7 +403,81 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Input: () => (/* binding */ Input)\n/* harmony export */ });\nclass Input {\r\n  constructor({ main }) {\r\n    this.main = main;\r\n\r\n    this.forms = document.forms;\r\n    this.commentsForms = this.forms[0];\r\n    this.commentsFormsElements = this.commentsForms.elements;\r\n    this.textarea = this.commentsFormsElements[0];\r\n    this.output = this.commentsFormsElements[1];\r\n    this.buttonSubmit = this.commentsFormsElements[2];\r\n    this.lengthCommentError = document.querySelector(\".comments__output-error\");\r\n\r\n    this.textarea.addEventListener(\"input\", () => {\r\n      this.output.textContent = 0 + this.textarea.value.length + \"/1000\";\r\n      if (this.textarea.value.length > 0) {\r\n        this.buttonSubmitReady();\r\n      } else {\r\n        this.buttonSubmitReady();\r\n      }\r\n      if (this.textarea.value.length > 1000) {\r\n        this.output.style.color = \"red\";\r\n        this.lengthCommentError.style.display = \"block\";\r\n        this.buttonSubmitReady();\r\n      } else {\r\n        this.output.style.color = \"black\";\r\n        this.lengthCommentError.style.display = \"none\";\r\n      }\r\n      this.textarea.style.height = 0;\r\n      this.textarea.style.height = this.textarea.scrollHeight + \"px\";\r\n    });\r\n\r\n    this.commentsForms.addEventListener(\"submit\", (event) => {\r\n      if (\r\n        this.textarea.value.length === 0 ||\r\n        this.textarea.value.length > 1000\r\n      ) {\r\n        event.preventDefault();\r\n      } else {\r\n        this.commentObj = {\r\n          text: this.textarea.value,\r\n          date: this.main.formatDate(),\r\n        };\r\n        this.main.comments.push(this.commentObj);\r\n        localStorage.setItem(\"comments\", JSON.stringify(this.main.comments));\r\n      }\r\n    });\r\n  }\r\n\r\n  buttonSubmitReady() {\r\n    if (this.textarea.value.length > 0 && this.textarea.value.length < 1000) {\r\n      this.buttonSubmit.classList.add(\"comment__input-btn--ready\");\r\n    } else {\r\n      this.buttonSubmit.classList.remove(\"comment__input-btn--ready\");\r\n    }\r\n  }\r\n\r\n  onFocusTextarea() {\r\n    for (let element of this.commentsFormsElements) {\r\n      if (element.type != \"checkbox\" && element.type != \"submit\") {\r\n        element.addEventListener(\"focus\", function () {\r\n          element.style.backgroundColor = \"lightyellow\";\r\n        });\r\n        element.addEventListener(\"blur\", function () {\r\n          element.style.backgroundColor = \"white\";\r\n        });\r\n      }\r\n    }\r\n  }\r\n}\r\n\r\n\n\n//# sourceURL=webpack://comment_system/./src/js/classes/input.js?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Input: () => (/* binding */ Input)
+/* harmony export */ });
+class Input {
+  constructor({ main }) {
+    this.main = main;
+
+    this.forms = document.forms;
+    this.commentsForms = this.forms[0];
+    this.commentsFormsElements = this.commentsForms.elements;
+    this.textarea = this.commentsFormsElements[0];
+    this.output = this.commentsFormsElements[1];
+    this.buttonSubmit = this.commentsFormsElements[2];
+    this.lengthCommentError = document.querySelector(".comments__output-error");
+
+    this.textarea.addEventListener("input", () => {
+      this.output.textContent = 0 + this.textarea.value.length + "/1000";
+      if (this.textarea.value.length > 0) {
+        this.buttonSubmitReady();
+      } else {
+        this.buttonSubmitReady();
+      }
+      if (this.textarea.value.length > 1000) {
+        this.output.style.color = "red";
+        this.lengthCommentError.style.display = "block";
+        this.buttonSubmitReady();
+      } else {
+        this.output.style.color = "black";
+        this.lengthCommentError.style.display = "none";
+      }
+      this.textarea.style.height = 0;
+      this.textarea.style.height = this.textarea.scrollHeight + "px";
+    });
+
+    this.commentsForms.addEventListener("submit", (event) => {
+      if (
+        this.textarea.value.length === 0 ||
+        this.textarea.value.length > 1000
+      ) {
+        event.preventDefault();
+      } else {
+        this.commentObj = {
+          text: this.textarea.value,
+          date: this.main.formatDate(),
+        };
+        this.main.comments.push(this.commentObj);
+        localStorage.setItem("comments", JSON.stringify(this.main.comments));
+      }
+    });
+  }
+
+  buttonSubmitReady() {
+    if (this.textarea.value.length > 0 && this.textarea.value.length < 1000) {
+      this.buttonSubmit.classList.add("comment__input-btn--ready");
+    } else {
+      this.buttonSubmit.classList.remove("comment__input-btn--ready");
+    }
+  }
+
+  onFocusTextarea() {
+    for (let element of this.commentsFormsElements) {
+      if (element.type != "checkbox" && element.type != "submit") {
+        element.addEventListener("focus", function () {
+          element.style.backgroundColor = "lightyellow";
+        });
+        element.addEventListener("blur", function () {
+          element.style.backgroundColor = "white";
+        });
+      }
+    }
+  }
+}
+
+
 
 /***/ }),
 
@@ -76,7 +487,177 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \**********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Rating: () => (/* binding */ Rating)\n/* harmony export */ });\nclass Rating {\r\n  constructor({ main }) {\r\n    this.main = main;\r\n  }\r\n  commentsRatingArchive() {\r\n    this.ratingBlocks = document.querySelectorAll(\".comments__rating-archive\");\r\n\r\n    for (let block of this.ratingBlocks) {\r\n      block.children[0].addEventListener(\r\n        \"click\",\r\n        (event) => {\r\n          let count = 0;\r\n          let target = event.currentTarget;\r\n          let targetIndexArchive =\r\n            target.closest(\".comments__archive\").dataset.index;\r\n          if (target) count--;\r\n          target.parentElement.parentElement.dataset.rating = count;\r\n          this.rememberRatingArchive(event);\r\n          target.parentElement.children[1].textContent =\r\n            this.displayArchive(targetIndexArchive);\r\n          if (target.parentElement.children[1].textContent < 0) {\r\n            target.parentElement.children[1].style.color = \"red\";\r\n          } else {\r\n            target.parentElement.children[1].style.color = \"#8ac540\";\r\n          }\r\n        },\r\n        { once: true }\r\n      );\r\n      block.children[2].addEventListener(\r\n        \"click\",\r\n        (event) => {\r\n          let count = 0;\r\n          let target = event.currentTarget;\r\n          let targetIndexArchive =\r\n            target.closest(\".comments__archive\").dataset.index;\r\n          if (target) count++;\r\n          target.parentElement.parentElement.dataset.rating = count;\r\n          this.rememberRatingArchive(event);\r\n          target.parentElement.children[1].textContent =\r\n            this.displayArchive(targetIndexArchive);\r\n          if (target.parentElement.children[1].textContent < 0) {\r\n            target.parentElement.children[1].style.color = \"red\";\r\n          } else {\r\n            target.parentElement.children[1].style.color = \"#8ac540\";\r\n          }\r\n        },\r\n        { once: true }\r\n      );\r\n    }\r\n  }\r\n\r\n  commentsRatingAnswer() {\r\n    this.ratingBlocksAnswer = document.querySelectorAll(\r\n      \".comments__rating-answer\"\r\n    );\r\n\r\n    for (let block of this.ratingBlocksAnswer) {\r\n      block.children[0].addEventListener(\r\n        \"click\",\r\n        (event) => {\r\n          let count = 0;\r\n          let target = event.currentTarget;\r\n          let targetIndexAnswer =\r\n            target.closest(\".comments__answer\").dataset.index;\r\n          if (target) count--;\r\n          target.parentElement.parentElement.dataset.rating = count;\r\n          this.rememberRatingAnswer(event);\r\n          target.parentElement.children[1].textContent =\r\n            this.displayAnswer(targetIndexAnswer);\r\n          if (target.parentElement.children[1].textContent < 0) {\r\n            target.parentElement.children[1].style.color = \"red\";\r\n          } else {\r\n            target.parentElement.children[1].style.color = \"#8ac540\";\r\n          }\r\n        },\r\n        { once: true }\r\n      );\r\n      block.children[2].addEventListener(\r\n        \"click\",\r\n        (event) => {\r\n          let count = 0;\r\n          let target = event.currentTarget;\r\n          let targetIndexAnswer =\r\n            target.closest(\".comments__answer\").dataset.index;\r\n          if (target) count++;\r\n          target.parentElement.parentElement.dataset.rating = count;\r\n          this.rememberRatingAnswer(event);\r\n          target.parentElement.children[1].textContent =\r\n            this.displayAnswer(targetIndexAnswer);\r\n          if (target.parentElement.children[1].textContent < 0) {\r\n            target.parentElement.children[1].style.color = \"red\";\r\n          } else {\r\n            target.parentElement.children[1].style.color = \"#8ac540\";\r\n          }\r\n        },\r\n        { once: true }\r\n      );\r\n    }\r\n  }\r\n\r\n  rememberRatingArchive(event) {\r\n    let target = event.currentTarget;\r\n    const ratingObj = {\r\n      value: Number(target.parentElement.parentElement.dataset.rating),\r\n      whose: Number(target.parentElement.parentElement.dataset.index),\r\n    };\r\n    this.main.ratings.push(ratingObj);\r\n    localStorage.setItem(\"ratings\", JSON.stringify(this.main.ratings));\r\n  }\r\n\r\n  rememberRatingAnswer(event) {\r\n    let target = event.currentTarget;\r\n    const ratingAnswerObj = {\r\n      value: Number(target.parentElement.parentElement.dataset.rating),\r\n      whose: Number(target.parentElement.parentElement.dataset.index),\r\n    };\r\n    this.main.answerRatings.push(ratingAnswerObj);\r\n    localStorage.setItem(\r\n      \"answerRatings\",\r\n      JSON.stringify(this.main.answerRatings)\r\n    );\r\n  }\r\n\r\n  displayRatingArchive(elem) {\r\n    let arr = this.main.ratings;\r\n    let result = Object.fromEntries(arr.map((item) => [item.whose, 0]));\r\n    arr.forEach((item) => {\r\n      result[item.whose] += item.value;\r\n    });\r\n    if (result[elem] === undefined) {\r\n      return 0;\r\n    } else {\r\n      return result[elem];\r\n    }\r\n  }\r\n  displayRatingAnswer(elem) {\r\n    let arr = this.main.answerRatings;\r\n    let result = Object.fromEntries(arr.map((item) => [item.whose, 0]));\r\n    arr.forEach((item) => {\r\n      result[item.whose] += item.value;\r\n    });\r\n    if (result[elem] === undefined) {\r\n      return 0;\r\n    } else {\r\n      return result[elem];\r\n    }\r\n  }\r\n  displayArchive(path) {\r\n    let arr = this.main.ratings;\r\n    let result = Object.fromEntries(arr.map((item) => [item.whose, 0]));\r\n    arr.forEach((item) => {\r\n      result[item.whose] += item.value;\r\n    });\r\n    return result[path];\r\n  }\r\n  displayAnswer(path) {\r\n    let arr = this.main.answerRatings;\r\n    let result = Object.fromEntries(arr.map((item) => [item.whose, 0]));\r\n    arr.forEach((item) => {\r\n      result[item.whose] += item.value;\r\n    });\r\n    return result[path];\r\n  }\r\n}\r\n\r\n\r\n\n\n//# sourceURL=webpack://comment_system/./src/js/classes/rating.js?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Rating: () => (/* binding */ Rating)
+/* harmony export */ });
+class Rating {
+  constructor({ main }) {
+    this.main = main;
+  }
+  commentsRatingArchive() {
+    this.ratingBlocks = document.querySelectorAll(".comments__rating-archive");
+
+    for (let block of this.ratingBlocks) {
+      block.children[0].addEventListener(
+        "click",
+        (event) => {
+          let count = 0;
+          let target = event.currentTarget;
+          let targetIndexArchive =
+            target.closest(".comments__archive").dataset.index;
+          if (target) count--;
+          target.parentElement.parentElement.dataset.rating = count;
+          this.rememberRatingArchive(event);
+          target.parentElement.children[1].textContent =
+            this.displayArchive(targetIndexArchive);
+          if (target.parentElement.children[1].textContent < 0) {
+            target.parentElement.children[1].style.color = "red";
+          } else {
+            target.parentElement.children[1].style.color = "#8ac540";
+          }
+        },
+        { once: true }
+      );
+      block.children[2].addEventListener(
+        "click",
+        (event) => {
+          let count = 0;
+          let target = event.currentTarget;
+          let targetIndexArchive =
+            target.closest(".comments__archive").dataset.index;
+          if (target) count++;
+          target.parentElement.parentElement.dataset.rating = count;
+          this.rememberRatingArchive(event);
+          target.parentElement.children[1].textContent =
+            this.displayArchive(targetIndexArchive);
+          if (target.parentElement.children[1].textContent < 0) {
+            target.parentElement.children[1].style.color = "red";
+          } else {
+            target.parentElement.children[1].style.color = "#8ac540";
+          }
+        },
+        { once: true }
+      );
+    }
+  }
+
+  commentsRatingAnswer() {
+    this.ratingBlocksAnswer = document.querySelectorAll(
+      ".comments__rating-answer"
+    );
+
+    for (let block of this.ratingBlocksAnswer) {
+      block.children[0].addEventListener(
+        "click",
+        (event) => {
+          let count = 0;
+          let target = event.currentTarget;
+          let targetIndexAnswer =
+            target.closest(".comments__answer").dataset.index;
+          if (target) count--;
+          target.parentElement.parentElement.dataset.rating = count;
+          this.rememberRatingAnswer(event);
+          target.parentElement.children[1].textContent =
+            this.displayAnswer(targetIndexAnswer);
+          if (target.parentElement.children[1].textContent < 0) {
+            target.parentElement.children[1].style.color = "red";
+          } else {
+            target.parentElement.children[1].style.color = "#8ac540";
+          }
+        },
+        { once: true }
+      );
+      block.children[2].addEventListener(
+        "click",
+        (event) => {
+          let count = 0;
+          let target = event.currentTarget;
+          let targetIndexAnswer =
+            target.closest(".comments__answer").dataset.index;
+          if (target) count++;
+          target.parentElement.parentElement.dataset.rating = count;
+          this.rememberRatingAnswer(event);
+          target.parentElement.children[1].textContent =
+            this.displayAnswer(targetIndexAnswer);
+          if (target.parentElement.children[1].textContent < 0) {
+            target.parentElement.children[1].style.color = "red";
+          } else {
+            target.parentElement.children[1].style.color = "#8ac540";
+          }
+        },
+        { once: true }
+      );
+    }
+  }
+
+  rememberRatingArchive(event) {
+    let target = event.currentTarget;
+    const ratingObj = {
+      value: Number(target.parentElement.parentElement.dataset.rating),
+      whose: Number(target.parentElement.parentElement.dataset.index),
+    };
+    this.main.ratings.push(ratingObj);
+    localStorage.setItem("ratings", JSON.stringify(this.main.ratings));
+  }
+
+  rememberRatingAnswer(event) {
+    let target = event.currentTarget;
+    const ratingAnswerObj = {
+      value: Number(target.parentElement.parentElement.dataset.rating),
+      whose: Number(target.parentElement.parentElement.dataset.index),
+    };
+    this.main.answerRatings.push(ratingAnswerObj);
+    localStorage.setItem(
+      "answerRatings",
+      JSON.stringify(this.main.answerRatings)
+    );
+  }
+
+  displayRatingArchive(elem) {
+    let arr = this.main.ratings;
+    let result = Object.fromEntries(arr.map((item) => [item.whose, 0]));
+    arr.forEach((item) => {
+      result[item.whose] += item.value;
+    });
+    if (result[elem] === undefined) {
+      return 0;
+    } else {
+      return result[elem];
+    }
+  }
+  displayRatingAnswer(elem) {
+    let arr = this.main.answerRatings;
+    let result = Object.fromEntries(arr.map((item) => [item.whose, 0]));
+    arr.forEach((item) => {
+      result[item.whose] += item.value;
+    });
+    if (result[elem] === undefined) {
+      return 0;
+    } else {
+      return result[elem];
+    }
+  }
+  displayArchive(path) {
+    let arr = this.main.ratings;
+    let result = Object.fromEntries(arr.map((item) => [item.whose, 0]));
+    arr.forEach((item) => {
+      result[item.whose] += item.value;
+    });
+    return result[path];
+  }
+  displayAnswer(path) {
+    let arr = this.main.answerRatings;
+    let result = Object.fromEntries(arr.map((item) => [item.whose, 0]));
+    arr.forEach((item) => {
+      result[item.whose] += item.value;
+    });
+    return result[path];
+  }
+}
+
+
+
 
 /***/ }),
 
@@ -86,7 +667,62 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   User: () => (/* binding */ User)\n/* harmony export */ });\nclass User {\r\n  constructor({ main }) {\r\n    this.main = main;\r\n\r\n    this.commentsHeader = document.querySelector(\".comments-header\");\r\n    this.userComment = document.querySelector(\".comments__user\");\r\n  }\r\n\r\n  setUser() {\r\n    this.userComment = document.createElement(\"form\");\r\n    this.userComment.classList.add(\"comments__user\");\r\n    this.userComment.innerHTML = `  \r\n    <img class=\"authorImg\" src=\"${\r\n      this.main.users.at(-1).src\r\n    }\" alt=\"user\" width=\"61\" height=\"61\"/>\r\n    <p class=\"comments__answer-title-nav\">${this.main.users.at(-1).first} ${\r\n      this.main.users.at(-1).last\r\n    }</p>\r\n        <textarea\r\n          class=\"comment__input-form\"\r\n          name=\"comment\"          \r\n          rows=\"1\"\r\n          placeholder=\"Введите текст сообщения...\"\r\n        ></textarea>\r\n        <output class=\"comment__output-form\">Макс. 1000 символов</output>\r\n        <p class=\"comments__output-error\">Слишком длинное сообщение</p>\r\n        <button class=\"comment__input-btn button\" type=\"submit\">\r\n          Отправить\r\n        </button>\r\n      `;\r\n    this.commentsHeader.after(this.userComment);\r\n  }\r\n  setUserName(idx) {\r\n    this.userImg = document.createElement(\"img\");\r\n    this.userImg.src = `${this.main.users[idx].src}`;\r\n    this.userImg.alt = \"user\";\r\n    this.userImg.width = 61;\r\n    this.userImg.height = 61;\r\n    this.userName = document.createElement(\"p\");\r\n    this.userName.classList.add(\"comments__archive-title\");\r\n    this.userName.textContent = `${this.main.users[idx].first} ${this.main.users[idx].last}`;\r\n\r\n    this.userComment.prepend(this.userImg);\r\n    this.userImg.remove();\r\n\r\n    this.userComment.prepend(this.userName);\r\n    this.userName.remove();\r\n  }\r\n}\r\n\r\n\r\n\n\n//# sourceURL=webpack://comment_system/./src/js/classes/user.js?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   User: () => (/* binding */ User)
+/* harmony export */ });
+class User {
+  constructor({ main }) {
+    this.main = main;
+
+    this.commentsHeader = document.querySelector(".comments-header");
+    this.userComment = document.querySelector(".comments__user");
+  }
+
+  setUser() {
+    this.userComment = document.createElement("form");
+    this.userComment.classList.add("comments__user");
+    this.userComment.innerHTML = `  
+    <img class="authorImg" src="${
+      this.main.users.at(-1).src
+    }" alt="user" width="61" height="61"/>
+    <p class="comments__answer-title-nav">${this.main.users.at(-1).first} ${
+      this.main.users.at(-1).last
+    }</p>
+        <textarea
+          class="comment__input-form"
+          name="comment"          
+          rows="1"
+          placeholder="Введите текст сообщения..."
+        ></textarea>
+        <output class="comment__output-form">Макс. 1000 символов</output>
+        <p class="comments__output-error">Слишком длинное сообщение</p>
+        <button class="comment__input-btn button" type="submit">
+          Отправить
+        </button>
+      `;
+    this.commentsHeader.after(this.userComment);
+  }
+  setUserName(idx) {
+    this.userImg = document.createElement("img");
+    this.userImg.src = `${this.main.users[idx].src}`;
+    this.userImg.alt = "user";
+    this.userImg.width = 61;
+    this.userImg.height = 61;
+    this.userName = document.createElement("p");
+    this.userName.classList.add("comments__archive-title");
+    this.userName.textContent = `${this.main.users[idx].first} ${this.main.users[idx].last}`;
+
+    this.userComment.prepend(this.userImg);
+    this.userImg.remove();
+
+    this.userComment.prepend(this.userName);
+    this.userName.remove();
+  }
+}
+
+
+
 
 /***/ }),
 
@@ -96,17 +732,199 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Utils: () => (/* binding */ Utils)\n/* harmony export */ });\nclass Utils {\r\n  constructor({ main }) {\r\n    this.main = main;\r\n\r\n    this.links = document.querySelectorAll(\".dropdown__link\");\r\n  }\r\n\r\n  dropdownMenu() {\r\n    this.onComments = document.querySelectorAll(\".comments-header__item-text\");\r\n    this.dropdownImg = document.querySelector(\".dropdown-arrow\");\r\n    this.dropdownNav = document.querySelector(\".comments-header__dropdown-nav\");\r\n\r\n    this.onComments[1].addEventListener(\"click\", () => {\r\n      this.onComments[1].classList.toggle(\"comments-header__item-text--active\");\r\n      this.dropdownContent = this.dropdownNav.nextElementSibling;\r\n      if (this.dropdownContent.style.display === \"block\") {\r\n        this.dropdownContent.style.display = \"none\";\r\n      } else {\r\n        this.dropdownContent.style.display = \"block\";\r\n      }\r\n      if (this.dropdownImg.classList.contains(\"comments-header--active\")) {\r\n        this.dropdownImg.classList.remove(\"comments-header--active\");\r\n      } else {\r\n        this.dropdownImg.classList.add(\"comments-header--active\");\r\n      }\r\n    });\r\n  }\r\n\r\n  increaseCommentCount() {\r\n    this.commentCount = document.querySelector(\".comments-count\");\r\n    this.commentCount.innerHTML = `\r\n    &#40;${this.main.comments.length + this.main.answers.length}&#41;\r\n    `;\r\n  }\r\n\r\n  sortCommentsByDate() {\r\n    this.noSortedByNumserOfDate = document.querySelectorAll('[class*=\"-date\"]');\r\n\r\n    this.byDateButtonsList = document.querySelector(\".byDate\");\r\n    this.buttonOnAllComents = document.querySelector(\r\n      \".comments-header__item-text\"\r\n    );\r\n    let buttonDown = this.byDateButtonsList.children[0];\r\n    let buttonUp = this.byDateButtonsList.children[1];\r\n    buttonDown.addEventListener(\"click\", () => {\r\n      this.displaySortByDate();\r\n      this.displayNoneNoSortedItems();\r\n    }),\r\n      { once: true };\r\n    buttonUp.addEventListener(\"click\", () => {\r\n      this.displaySortByDateReverse();\r\n      this.displayNoneNoSortedItems();\r\n    }),\r\n      { once: true };\r\n    this.buttonOnAllComents.addEventListener(\"click\", () => {\r\n      this.displayOnNoSortedItems();\r\n    }),\r\n      { once: true };\r\n  }\r\n\r\n  sortCommentsByNumserOfRating() {\r\n    this.noSortedByNumserOfRating =\r\n      document.querySelectorAll(\".comments__count\");\r\n\r\n    for (let rating of this.noSortedByNumserOfRating) {\r\n      const itemSort = {\r\n        src: rating.parentElement.parentElement.children[0].src,\r\n        name: rating.parentElement.parentElement.children[1].textContent,\r\n        date: rating.parentElement.parentElement.children[2].textContent,\r\n        text: rating.parentElement.parentElement.children[3].textContent,\r\n        nameReply: rating.parentElement.parentElement.children[4].textContent,\r\n        rating: Number(rating.textContent),\r\n        whoseAr: rating.parentElement.parentElement.dataset.index,\r\n      };\r\n      this.main.itemsSort.push(itemSort);\r\n      if (\r\n        this.main.itemsSort.length >\r\n        this.main.comments.length + this.main.answers.length\r\n      )\r\n        this.main.itemsSort.shift();\r\n      localStorage.setItem(\"itemsSort\", JSON.stringify(this.main.itemsSort));\r\n    }\r\n\r\n    this.byRatingButtonsList = document.querySelector(\".byNumserOfRating\");\r\n    this.buttonOnAllComents = document.querySelector(\r\n      \".comments-header__item-text\"\r\n    );\r\n    let buttonDown = this.byRatingButtonsList.children[0];\r\n    let buttonUp = this.byRatingButtonsList.children[1];\r\n    buttonDown.addEventListener(\"click\", () => {\r\n      this.displaySortByRating();\r\n      this.displayNoneNoSortedItems();\r\n    }),\r\n      { once: true };\r\n    buttonUp.addEventListener(\"click\", () => {\r\n      this.displaySortByRatingReverse();\r\n      this.displayNoneNoSortedItems();\r\n    }),\r\n      { once: true };\r\n    this.buttonOnAllComents.addEventListener(\"click\", () => {\r\n      this.displayOnNoSortedItems();\r\n    }),\r\n      { once: true };\r\n  }\r\n\r\n  displaySortByRating() {\r\n    this.main.itemsSort.sort((a, b) => (a.rating > b.rating ? 1 : -1));\r\n    this.setUsersSort();\r\n  }\r\n\r\n  displaySortByDate() {\r\n    this.main.itemsSort.sort((a, b) => (a.date > b.date ? 1 : -1));\r\n    this.setUsersSort();\r\n  }\r\n\r\n  displaySortByRatingReverse() {\r\n    this.main.itemsSort.sort((a, b) => (a.rating < b.rating ? 1 : -1));\r\n    this.setUsersSort();\r\n  }\r\n  displaySortByDateReverse() {\r\n    this.main.itemsSort.sort((a, b) => (a.date < b.date ? 1 : -1));\r\n    this.setUsersSort();\r\n  }\r\n\r\n  displayNoneNoSortedItems() {\r\n    this.noSortedItems = document.querySelector(\".comments__container\");\r\n    this.noSortedItems.style.display = \"none\";\r\n    this.buttonOnAllComents.style.backgroundColor = \"red\";\r\n  }\r\n\r\n  displayOnNoSortedItems() {\r\n    this.noSortedItems.style.display = \"block\";\r\n    this.buttonOnAllComents.style.backgroundColor = \"transparent\";\r\n    window.location.reload();\r\n    this.setUsersSortClearDisplay();\r\n  }\r\n\r\n  setUsersSort() {\r\n    this.main.itemsSort.forEach((el, idx) => {\r\n      if (el != null) this.setNextUserSort(idx);\r\n    });\r\n  }\r\n\r\n  setNextUserSort(idx) {\r\n    this.userSortNextContainer = document.querySelector(\".comments__content\");\r\n    this.userSortNext = document.createElement(\"div\");\r\n    this.userSortNext.classList.add(\"comments__sorted\");\r\n    this.userSortNext.innerHTML = `\r\n    <img src=\"${this.main.itemsSort[idx].src}\" alt=\"user\" width=\"61\" height=\"61\"/>\r\n    <p class=\"comments__answer-title\">${this.main.itemsSort[idx].name}</p>\r\n      <p class=\"comments__archive-date\">${this.main.itemsSort[idx].date}</p>\r\n      <p class=\"comments__archive-text\">${this.main.itemsSort[idx].text}   \r\n      </p>\r\n      <div class=\"comments__rating comments__rating-archive\">\r\n          <img src=\"./src/assets/btn_minus.svg\" alt=\"btn-minus\" />\r\n        <span class=\"comments__count\">${this.main.itemsSort[idx].rating}</span>\r\n        <img src=\"./src/assets/btn_plus.svg\" alt=\"btn-plus\" />\r\n      </div>\r\n    `;\r\n    this.userSortNextContainer.after(this.userSortNext);\r\n  }\r\n\r\n  setUsersSortClearDisplay() {\r\n    this.userSortNextItems = document.querySelectorAll(\".comments__sorted\");\r\n    this.userSortNextItems.innerHTML = \"\";\r\n  }\r\n\r\n  sortCommentsByRelevance() {\r\n    this.links[2].addEventListener(\"click\", () => {\r\n      alert(\"идет сортировка.......\");\r\n      setTimeout(() => {\r\n        alert(\"Ой, данная фича ещё в разработке)))\");\r\n        window.location.reload();\r\n      }, 1000);\r\n    });\r\n  }\r\n\r\n  sortCommentsByNumberOfResponses() {\r\n    this.links[3].addEventListener(\"click\", () => {\r\n      alert(\"идет сортировка.......\");\r\n      setTimeout(() => {\r\n        alert(\"Ой, эта фича тоже ещё в разработке)))\");\r\n        window.location.reload();\r\n      }, 1000);\r\n    });\r\n  }\r\n}\r\n\r\n\n\n//# sourceURL=webpack://comment_system/./src/js/classes/utils.js?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Utils: () => (/* binding */ Utils)
+/* harmony export */ });
+class Utils {
+  constructor({ main }) {
+    this.main = main;
 
-/***/ }),
+    this.links = document.querySelectorAll(".dropdown__link");
+  }
 
-/***/ "./src/js/index.js":
-/*!*************************!*\
-  !*** ./src/js/index.js ***!
-  \*************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+  dropdownMenu() {
+    this.onComments = document.querySelectorAll(".comments-header__item-text");
+    this.dropdownImg = document.querySelector(".dropdown-arrow");
+    this.dropdownNav = document.querySelector(".comments-header__dropdown-nav");
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _main_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./main.js */ \"./src/js/main.js\");\n/* harmony import */ var _css_reset_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../css/reset.css */ \"./src/css/reset.css\");\n/* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../css/style.css */ \"./src/css/style.css\");\n\r\n\r\n\r\n\r\nconst main = new _main_js__WEBPACK_IMPORTED_MODULE_0__.Main();\r\nmain.start();\r\n\n\n//# sourceURL=webpack://comment_system/./src/js/index.js?");
+    this.onComments[1].addEventListener("click", () => {
+      this.onComments[1].classList.toggle("comments-header__item-text--active");
+      this.dropdownContent = this.dropdownNav.nextElementSibling;
+      if (this.dropdownContent.style.display === "block") {
+        this.dropdownContent.style.display = "none";
+      } else {
+        this.dropdownContent.style.display = "block";
+      }
+      if (this.dropdownImg.classList.contains("comments-header--active")) {
+        this.dropdownImg.classList.remove("comments-header--active");
+      } else {
+        this.dropdownImg.classList.add("comments-header--active");
+      }
+    });
+  }
+
+  increaseCommentCount() {
+    this.commentCount = document.querySelector(".comments-count");
+    this.commentCount.innerHTML = `
+    &#40;${this.main.comments.length + this.main.answers.length}&#41;
+    `;
+  }
+
+  sortCommentsByDate() {
+    this.noSortedByNumserOfDate = document.querySelectorAll('[class*="-date"]');
+
+    this.byDateButtonsList = document.querySelector(".byDate");
+    this.buttonOnAllComents = document.querySelector(
+      ".comments-header__item-text"
+    );
+    let buttonDown = this.byDateButtonsList.children[0];
+    let buttonUp = this.byDateButtonsList.children[1];
+    buttonDown.addEventListener("click", () => {
+      this.displaySortByDate();
+      this.displayNoneNoSortedItems();
+    }),
+      { once: true };
+    buttonUp.addEventListener("click", () => {
+      this.displaySortByDateReverse();
+      this.displayNoneNoSortedItems();
+    }),
+      { once: true };
+    this.buttonOnAllComents.addEventListener("click", () => {
+      this.displayOnNoSortedItems();
+    }),
+      { once: true };
+  }
+
+  sortCommentsByNumserOfRating() {
+    this.noSortedByNumserOfRating =
+      document.querySelectorAll(".comments__count");
+
+    for (let rating of this.noSortedByNumserOfRating) {
+      const itemSort = {
+        src: rating.parentElement.parentElement.children[0].src,
+        name: rating.parentElement.parentElement.children[1].textContent,
+        date: rating.parentElement.parentElement.children[2].textContent,
+        text: rating.parentElement.parentElement.children[3].textContent,
+        nameReply: rating.parentElement.parentElement.children[4].textContent,
+        rating: Number(rating.textContent),
+        whoseAr: rating.parentElement.parentElement.dataset.index,
+      };
+      this.main.itemsSort.push(itemSort);
+      if (
+        this.main.itemsSort.length >
+        this.main.comments.length + this.main.answers.length
+      )
+        this.main.itemsSort.shift();
+      localStorage.setItem("itemsSort", JSON.stringify(this.main.itemsSort));
+    }
+
+    this.byRatingButtonsList = document.querySelector(".byNumserOfRating");
+    this.buttonOnAllComents = document.querySelector(
+      ".comments-header__item-text"
+    );
+    let buttonDown = this.byRatingButtonsList.children[0];
+    let buttonUp = this.byRatingButtonsList.children[1];
+    buttonDown.addEventListener("click", () => {
+      this.displaySortByRating();
+      this.displayNoneNoSortedItems();
+    }),
+      { once: true };
+    buttonUp.addEventListener("click", () => {
+      this.displaySortByRatingReverse();
+      this.displayNoneNoSortedItems();
+    }),
+      { once: true };
+    this.buttonOnAllComents.addEventListener("click", () => {
+      this.displayOnNoSortedItems();
+    }),
+      { once: true };
+  }
+
+  displaySortByRating() {
+    this.main.itemsSort.sort((a, b) => (a.rating > b.rating ? 1 : -1));
+    this.setUsersSort();
+  }
+
+  displaySortByDate() {
+    this.main.itemsSort.sort((a, b) => (a.date > b.date ? 1 : -1));
+    this.setUsersSort();
+  }
+
+  displaySortByRatingReverse() {
+    this.main.itemsSort.sort((a, b) => (a.rating < b.rating ? 1 : -1));
+    this.setUsersSort();
+  }
+  displaySortByDateReverse() {
+    this.main.itemsSort.sort((a, b) => (a.date < b.date ? 1 : -1));
+    this.setUsersSort();
+  }
+
+  displayNoneNoSortedItems() {
+    this.noSortedItems = document.querySelector(".comments__container");
+    this.noSortedItems.style.display = "none";
+    this.buttonOnAllComents.style.backgroundColor = "red";
+  }
+
+  displayOnNoSortedItems() {
+    this.noSortedItems.style.display = "block";
+    this.buttonOnAllComents.style.backgroundColor = "transparent";
+    window.location.reload();
+    this.setUsersSortClearDisplay();
+  }
+
+  setUsersSort() {
+    this.main.itemsSort.forEach((el, idx) => {
+      if (el != null) this.setNextUserSort(idx);
+    });
+  }
+
+  setNextUserSort(idx) {
+    this.userSortNextContainer = document.querySelector(".comments__content");
+    this.userSortNext = document.createElement("div");
+    this.userSortNext.classList.add("comments__sorted");
+    this.userSortNext.innerHTML = `
+    <img src="${this.main.itemsSort[idx].src}" alt="user" width="61" height="61"/>
+    <p class="comments__answer-title">${this.main.itemsSort[idx].name}</p>
+      <p class="comments__archive-date">${this.main.itemsSort[idx].date}</p>
+      <p class="comments__archive-text">${this.main.itemsSort[idx].text}   
+      </p>
+      <div class="comments__rating comments__rating-archive">
+          <img src="./src/assets/btn_minus.svg" alt="btn-minus" />
+        <span class="comments__count">${this.main.itemsSort[idx].rating}</span>
+        <img src="./src/assets/btn_plus.svg" alt="btn-plus" />
+      </div>
+    `;
+    this.userSortNextContainer.after(this.userSortNext);
+  }
+
+  setUsersSortClearDisplay() {
+    this.userSortNextItems = document.querySelectorAll(".comments__sorted");
+    this.userSortNextItems.innerHTML = "";
+  }
+
+  sortCommentsByRelevance() {
+    this.links[2].addEventListener("click", () => {
+      alert("идет сортировка.......");
+      setTimeout(() => {
+        alert("Ой, данная фича ещё в разработке)))");
+        window.location.reload();
+      }, 1000);
+    });
+  }
+
+  sortCommentsByNumberOfResponses() {
+    this.links[3].addEventListener("click", () => {
+      alert("идет сортировка.......");
+      setTimeout(() => {
+        alert("Ой, эта фича тоже ещё в разработке)))");
+        window.location.reload();
+      }, 1000);
+    });
+  }
+}
+
+
 
 /***/ }),
 
@@ -116,7 +934,180 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _mai
   \************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   Main: () => (/* binding */ Main)\n/* harmony export */ });\n/* harmony import */ var _classes_rating_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./classes/rating.js */ \"./src/js/classes/rating.js\");\n/* harmony import */ var _classes_user_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./classes/user.js */ \"./src/js/classes/user.js\");\n/* harmony import */ var _classes_archive_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./classes/archive.js */ \"./src/js/classes/archive.js\");\n/* harmony import */ var _classes_answer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./classes/answer.js */ \"./src/js/classes/answer.js\");\n/* harmony import */ var _classes_utils_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./classes/utils.js */ \"./src/js/classes/utils.js\");\n/* harmony import */ var _classes_favourites_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./classes/favourites.js */ \"./src/js/classes/favourites.js\");\n/* harmony import */ var _classes_input_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./classes/input.js */ \"./src/js/classes/input.js\");\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nclass Main {\r\n  API = \"https://randomuser.me/api/\";\r\n  users = JSON.parse(localStorage.getItem(\"users\")) || [];\r\n  comments = JSON.parse(localStorage.getItem(\"comments\")) || [];\r\n  answers = JSON.parse(localStorage.getItem(\"answers\")) || [];\r\n  ratings = JSON.parse(localStorage.getItem(\"ratings\")) || [];\r\n  answerRatings = JSON.parse(localStorage.getItem(\"answerRatings\")) || [];\r\n  itemsSort = JSON.parse(localStorage.getItem(\"itemsSort\")) || [];\r\n  usersIdx = 0;\r\n  maxUsers = 20;\r\n  userTitles = [\r\n    \"comments__user-title\",\r\n    \"comments__archive-title\",\r\n    \"comments__answer-title\",\r\n  ];\r\n\r\n  async setUserParams(API) {\r\n    await fetch(API).then((res) =>\r\n      res.json().then((data) => {\r\n        const userObj = {\r\n          first: data.results[0].name.first,\r\n          last: data.results[0].name.last,\r\n          src: data.results[0].picture.thumbnail,\r\n        };\r\n        this.users.push(userObj);\r\n        if (this.users.length > this.maxUsers) this.users.pop();\r\n        localStorage.setItem(\"users\", JSON.stringify(this.users));\r\n      })\r\n    );\r\n    return this.users;\r\n  }\r\n\r\n  formatDate() {\r\n    let dayOfMonth = new Date().getDate();\r\n    let month = new Date().getMonth() + 1;\r\n    let hour = new Date().getHours();\r\n    let minutes = new Date().getMinutes();\r\n\r\n    month = month < 10 ? \"0\" + month : month;\r\n    dayOfMonth = dayOfMonth < 10 ? \"0\" + dayOfMonth : dayOfMonth;\r\n    hour = hour < 10 ? \"0\" + hour : hour;\r\n    minutes = minutes < 10 ? \"0\" + minutes : minutes;\r\n\r\n    return `${dayOfMonth}.${month} ${hour}:${minutes}`;\r\n  }\r\n\r\n  render() {\r\n    this.rating = new _classes_rating_js__WEBPACK_IMPORTED_MODULE_0__.Rating({\r\n      main: this,\r\n    });\r\n    this.user = new _classes_user_js__WEBPACK_IMPORTED_MODULE_1__.User({\r\n      main: this,\r\n    });\r\n    this.archive = new _classes_archive_js__WEBPACK_IMPORTED_MODULE_2__.Archive({\r\n      rating: this.rating,\r\n      main: this,\r\n    });\r\n    this.answer = new _classes_answer_js__WEBPACK_IMPORTED_MODULE_3__.Answer({\r\n      rating: this.rating,\r\n      main: this,\r\n    });\r\n    this.utils = new _classes_utils_js__WEBPACK_IMPORTED_MODULE_4__.Utils({\r\n      main: this,\r\n    });\r\n    this.favorites = new _classes_favourites_js__WEBPACK_IMPORTED_MODULE_5__.Favorites({\r\n      main: this,\r\n    });\r\n  }\r\n\r\n  renderInput() {\r\n    this.input = new _classes_input_js__WEBPACK_IMPORTED_MODULE_6__.Input({\r\n      main: this,\r\n    });\r\n  }\r\n\r\n  setNextUser() {\r\n    this.user.setUser();\r\n    this.users.forEach((el, idx) => {\r\n      if (el != null) this.user.setUserName(idx);\r\n    });\r\n  }\r\n\r\n  setNextComments() {\r\n    this.comments.forEach((el, idx) => {\r\n      if (el != null) this.archive.setNextUser(idx);\r\n    });\r\n  }\r\n\r\n  getCommentsInFavorites() {\r\n    this.onComments = document.querySelectorAll(\".comments-header__item-text\");\r\n    this.onComments[2].addEventListener(\"click\", (event) => {\r\n      event.currentTarget.classList.toggle(\r\n        \"comments-header__item-text--active\"\r\n      );\r\n      if (\r\n        event.currentTarget.classList.contains(\r\n          \"comments-header__item-text--active\"\r\n        )\r\n      ) {\r\n        this.commentsArchiveIsFavorite =\r\n          document.querySelectorAll(\".comments__archive\");\r\n        for (let element of this.commentsArchiveIsFavorite) {\r\n          if (element.getAttribute(\"isFavorite\") === \"false\") {\r\n            element.style.display = \"none\";\r\n          }\r\n        }\r\n        this.commentsAmswerIsFavorite =\r\n          document.querySelectorAll(\".comments__answer\");\r\n        for (let element of this.commentsAmswerIsFavorite) {\r\n          if (element.getAttribute(\"isFavorite\") === \"false\") {\r\n            element.style.display = \"none\";\r\n          }\r\n        }\r\n      } else {\r\n        this.commentsArchiveIsFavorite =\r\n          document.querySelectorAll(\".comments__archive\");\r\n        for (let element of this.commentsArchiveIsFavorite) {\r\n          element.style.display = \"grid\";\r\n        }\r\n        this.commentsAmswerIsFavorite =\r\n          document.querySelectorAll(\".comments__answer\");\r\n        for (let element of this.commentsAmswerIsFavorite) {\r\n          element.style.display = \"grid\";\r\n        }\r\n      }\r\n    });\r\n  }\r\n\r\n  async start() {\r\n    await this.setUserParams(this.API);\r\n\r\n    this.render();\r\n    this.setNextUser();\r\n    this.renderInput();\r\n\r\n    this.setNextComments();\r\n    this.answer.commentAnswer();\r\n    this.answer.setNextAnswers();\r\n    this.utils.increaseCommentCount();\r\n    this.favorites.addToFavoritesArchives();\r\n    this.favorites.addToFavoritesAnswers();\r\n    this.getCommentsInFavorites();\r\n    this.rating.commentsRatingArchive();\r\n    this.rating.commentsRatingAnswer();\r\n    this.utils.sortCommentsByDate();\r\n    this.utils.sortCommentsByNumserOfRating();\r\n    this.input.onFocusTextarea();\r\n    this.utils.sortCommentsByRelevance();\r\n    this.utils.dropdownMenu();\r\n    this.utils.sortCommentsByNumberOfResponses();\r\n  }\r\n}\r\n\r\n\r\n\n\n//# sourceURL=webpack://comment_system/./src/js/main.js?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Main: () => (/* binding */ Main)
+/* harmony export */ });
+/* harmony import */ var _classes_rating_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./classes/rating.js */ "./src/js/classes/rating.js");
+/* harmony import */ var _classes_user_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./classes/user.js */ "./src/js/classes/user.js");
+/* harmony import */ var _classes_archive_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./classes/archive.js */ "./src/js/classes/archive.js");
+/* harmony import */ var _classes_answer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./classes/answer.js */ "./src/js/classes/answer.js");
+/* harmony import */ var _classes_utils_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./classes/utils.js */ "./src/js/classes/utils.js");
+/* harmony import */ var _classes_favourites_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./classes/favourites.js */ "./src/js/classes/favourites.js");
+/* harmony import */ var _classes_input_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./classes/input.js */ "./src/js/classes/input.js");
+
+
+
+
+
+
+
+
+class Main {
+  API = "https://randomuser.me/api/";
+  users = JSON.parse(localStorage.getItem("users")) || [];
+  comments = JSON.parse(localStorage.getItem("comments")) || [];
+  answers = JSON.parse(localStorage.getItem("answers")) || [];
+  ratings = JSON.parse(localStorage.getItem("ratings")) || [];
+  answerRatings = JSON.parse(localStorage.getItem("answerRatings")) || [];
+  itemsSort = JSON.parse(localStorage.getItem("itemsSort")) || [];
+  usersIdx = 0;
+  maxUsers = 20;
+  userTitles = [
+    "comments__user-title",
+    "comments__archive-title",
+    "comments__answer-title",
+  ];
+
+  async setUserParams(API) {
+    await fetch(API).then((res) =>
+      res.json().then((data) => {
+        const userObj = {
+          first: data.results[0].name.first,
+          last: data.results[0].name.last,
+          src: data.results[0].picture.thumbnail,
+        };
+        this.users.push(userObj);
+        if (this.users.length > this.maxUsers) this.users.pop();
+        localStorage.setItem("users", JSON.stringify(this.users));
+      })
+    );
+    return this.users;
+  }
+
+  formatDate() {
+    let dayOfMonth = new Date().getDate();
+    let month = new Date().getMonth() + 1;
+    let hour = new Date().getHours();
+    let minutes = new Date().getMinutes();
+
+    month = month < 10 ? "0" + month : month;
+    dayOfMonth = dayOfMonth < 10 ? "0" + dayOfMonth : dayOfMonth;
+    hour = hour < 10 ? "0" + hour : hour;
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+
+    return `${dayOfMonth}.${month} ${hour}:${minutes}`;
+  }
+
+  render() {
+    this.rating = new _classes_rating_js__WEBPACK_IMPORTED_MODULE_0__.Rating({
+      main: this,
+    });
+    this.user = new _classes_user_js__WEBPACK_IMPORTED_MODULE_1__.User({
+      main: this,
+    });
+    this.archive = new _classes_archive_js__WEBPACK_IMPORTED_MODULE_2__.Archive({
+      rating: this.rating,
+      main: this,
+    });
+    this.answer = new _classes_answer_js__WEBPACK_IMPORTED_MODULE_3__.Answer({
+      rating: this.rating,
+      main: this,
+    });
+    this.utils = new _classes_utils_js__WEBPACK_IMPORTED_MODULE_4__.Utils({
+      main: this,
+    });
+    this.favorites = new _classes_favourites_js__WEBPACK_IMPORTED_MODULE_5__.Favorites({
+      main: this,
+    });
+  }
+
+  renderInput() {
+    this.input = new _classes_input_js__WEBPACK_IMPORTED_MODULE_6__.Input({
+      main: this,
+    });
+  }
+
+  setNextUser() {
+    this.user.setUser();
+    this.users.forEach((el, idx) => {
+      if (el != null) this.user.setUserName(idx);
+    });
+  }
+
+  setNextComments() {
+    this.comments.forEach((el, idx) => {
+      if (el != null) this.archive.setNextUser(idx);
+    });
+  }
+
+  getCommentsInFavorites() {
+    this.onComments = document.querySelectorAll(".comments-header__item-text");
+    this.onComments[2].addEventListener("click", (event) => {
+      event.currentTarget.classList.toggle(
+        "comments-header__item-text--active"
+      );
+      if (
+        event.currentTarget.classList.contains(
+          "comments-header__item-text--active"
+        )
+      ) {
+        this.commentsArchiveIsFavorite =
+          document.querySelectorAll(".comments__archive");
+        for (let element of this.commentsArchiveIsFavorite) {
+          if (element.getAttribute("isFavorite") === "false") {
+            element.style.display = "none";
+          }
+        }
+        this.commentsAmswerIsFavorite =
+          document.querySelectorAll(".comments__answer");
+        for (let element of this.commentsAmswerIsFavorite) {
+          if (element.getAttribute("isFavorite") === "false") {
+            element.style.display = "none";
+          }
+        }
+      } else {
+        this.commentsArchiveIsFavorite =
+          document.querySelectorAll(".comments__archive");
+        for (let element of this.commentsArchiveIsFavorite) {
+          element.style.display = "grid";
+        }
+        this.commentsAmswerIsFavorite =
+          document.querySelectorAll(".comments__answer");
+        for (let element of this.commentsAmswerIsFavorite) {
+          element.style.display = "grid";
+        }
+      }
+    });
+  }
+
+  async start() {
+    await this.setUserParams(this.API);
+
+    this.render();
+    this.setNextUser();
+    this.renderInput();
+
+    this.setNextComments();
+    this.answer.commentAnswer();
+    this.answer.setNextAnswers();
+    this.utils.increaseCommentCount();
+    this.favorites.addToFavoritesArchives();
+    this.favorites.addToFavoritesAnswers();
+    this.getCommentsInFavorites();
+    this.rating.commentsRatingArchive();
+    this.rating.commentsRatingAnswer();
+    this.utils.sortCommentsByDate();
+    this.utils.sortCommentsByNumserOfRating();
+    this.input.onFocusTextarea();
+    this.utils.sortCommentsByRelevance();
+    this.utils.dropdownMenu();
+    this.utils.sortCommentsByNumberOfResponses();
+  }
+}
+
+
+
 
 /***/ })
 
@@ -176,11 +1167,25 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 /******/ 	})();
 /******/ 	
 /************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = __webpack_require__("./src/js/index.js");
-/******/ 	
+var __webpack_exports__ = {};
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+(() => {
+/*!*************************!*\
+  !*** ./src/js/index.js ***!
+  \*************************/
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _main_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./main.js */ "./src/js/main.js");
+/* harmony import */ var _css_reset_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../css/reset.css */ "./src/css/reset.css");
+/* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../css/style.css */ "./src/css/style.css");
+
+
+
+
+const main = new _main_js__WEBPACK_IMPORTED_MODULE_0__.Main();
+main.start();
+
+})();
+
 /******/ })()
 ;
+//# sourceMappingURL=main.js.map
